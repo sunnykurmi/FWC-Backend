@@ -6,6 +6,9 @@ let path = require("path");
 let imagekit = require("../utils/imagekit.js").initImageKit();
 
 const UserSchema = require("../models/user.schema.js");
+const { oauth2Client } = require("../utils/googleConfig.js");
+const axios = require("axios");
+
 
 exports.current_user = catchAsyncErrors(async (req, res, next) => {
   let user = await UserSchema.findById(req.id)
@@ -68,4 +71,52 @@ exports.logout_user = catchAsyncErrors(async (req, res, next) => {
   });
 })
 
+exports.google_auth = catchAsyncErrors(async (req, res, next) => {
+  let code = req.query.code;
+  if (!code) {
+      return res.status(400).json({ message: "No code provided" });
+  }
+  let googleRes;
+  try {
+      googleRes = await oauth2Client.getToken(code);
+  } catch (error) {
+      return res.status(401).json({ message: "Failed to get token from Google API" });
+  }
+
+  oauth2Client.setCredentials(googleRes.tokens);
+
+  let userRes;
+  try {
+      userRes = await axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${googleRes.tokens.access_token}`);
+  } catch (error) {
+      return res.status(401).json({ message: "Failed to fetch user info from Google API" });
+  }
+
+  const { email, name, picture } = userRes.data;
+
+  let user;
+  try {
+      user = await UserSchema.findOne({ email });
+      if (!user) {
+          user = new UserSchema({
+              name,
+              email,
+              avatar: {
+                  fileId: "",
+                  url: picture
+              }
+          });
+          await user.save();
+      } else {
+
+      }
+  } catch (error) {
+      return res.status(500).json({ message: "Failed to find or create user" });
+  }
+  try {
+    sendtoken(user, "User logged in successfully", 200, res);
+  } catch (error) {
+      return res.status(500).json({ message: "Failed to send token" });
+  }
+});
 

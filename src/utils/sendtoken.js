@@ -17,5 +17,6 @@ exports.sendtoken = async (user, message, statuscode, res) => {
             message: message,
             id: user._id,
             twk_fwc,
+            user
         });
 };

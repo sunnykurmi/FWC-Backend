@@ -10,4 +10,6 @@ router.route("/all_members").get(isAuthenticated, isAdmin, all_members);
 // member create post route
 router.route("/create_member").post(create_member);
 
+
+
 module.exports = router;

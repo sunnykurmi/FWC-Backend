@@ -1,7 +1,10 @@
 let express = require("express");
-const { homepage, create_user, login_user, logout_user, current_user } = require("../controllers/user.controllers");
+const { homepage, create_user, login_user, logout_user, current_user ,google_auth } = require("../controllers/user.controllers");
 const { isAuthenticated } = require("../middlewares/auth");
 let router = express.Router();
+
+// route for google auth
+router.route("/google_auth").get(google_auth)
 
 // current user route
 router.route("/current_user").get(isAuthenticated, current_user);
