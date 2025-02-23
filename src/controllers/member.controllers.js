@@ -56,39 +56,39 @@ exports.create_member = catchAsyncErrors(async (req, res, next) => {
   const mailOptions = {
     from: "First World Community",
     to: email,
-    subject: "Your FWC Membership Application Is Under Review 🚀",
+    subject: "Your FWC Financial Aid Application is Under Review 🚀",
     html: `
-          <div style="text-align: start; width: 80%; font-family: Arial, sans-serif; color: #333; font-size: 1.2vw; margin: auto; padding: 20px; border: 2px solid #333; border-radius: 10px;">
-    <p>
-      Dear <b>${email}</b>,
-      <br /><br />
-      Thank you for applying for FWC Membership and for showing interest in being part of First World Community (FWC). We truly appreciate your enthusiasm and believe in your potential to make an impact!
-      <br /><br />
-      At FWC, you are valuable, and your journey matters. As a community-driven organization, we are committed to supporting entrepreneurs and changemakers like you. However, to ensure fairness and transparency, we follow a structured review process before approving.
-      <br /><br />
-      <b>What Happens Next?</b>
-      <br />
-      ✅ Our team is reviewing your application and profile to ensure all details are complete.
-      <br />
-      ✅ If approved, you will receive your membership confirmation within 12 hours.
-      <br />
-      ✅ If rejected, your application fee will be refunded promptly.
-      <br /><br />
-      📌 <b>Important:</b> Please make sure all details in your application are accurate, as incomplete applications may lead to delays or rejection.
-      <br /><br />
-      We are excited about the possibility of welcoming you to FWC! Regardless of the outcome, we are always here to support, guide, and empower you. Because at FWC, we believe in impact, community, and family.
-      <br /><br />
-      Stay tuned for your application results, and thank you for being part of this journey! 🚀
-      <br /><br />
-      Best Regards,
-      <br />
-      <b>FWC Membership Team</b>
-      <br /><br />
-      🌍 <i>One World, One Community, One Future</i>
-      <br />
-      📩 <a href="mailto:info@fwc-india.org">Info@fwc-india.org</a> | 🌐 <a href="https://firstworldcommunity.org" target="_blank">firstworldcommunity.org</a>
-    </p>
-  </div>
+         <div style="text-align: start; width: 80%; font-family: Arial, sans-serif; color: #333; font-size: 1.2vw; margin: auto; padding: 20px; border: 2px solid #333; border-radius: 10px;">
+      <p>
+        Dear <b>${email}</b>,
+        <br /><br />
+        Thank you for applying for FWC Membership Financial Aid and for showing interest in being part of First World Community (FWC). We truly appreciate your enthusiasm and believe in your potential to make an impact!
+        <br /><br />
+        At FWC, you are valuable, and your journey matters. As a community-driven, not-for-profit organization, we are committed to supporting entrepreneurs and changemakers like you. However, to ensure fairness and transparency, we follow a structured review process before approving financial aid.
+        <br /><br />
+        <b>What Happens Next?</b>
+        <br />
+        ✅ Our team is reviewing your application and profile to ensure all details are complete.
+        <br />
+        ✅ If approved, you will receive your membership confirmation within 12 hours.
+        <br />
+        ✅ If rejected, your application fee will be refunded promptly.
+        <br /><br />
+        📌 <b>Important:</b> Please make sure all details in your application are accurate, as incomplete applications may lead to delays or rejection.
+        <br /><br />
+        We are excited about the possibility of welcoming you to FWC! Regardless of the outcome, we are always here to support, guide, and empower you. Because at FWC, we believe in impact, community, and family.
+        <br /><br />
+        Stay tuned for your application results, and thank you for being part of this journey! 🚀
+        <br /><br />
+        Best Regards,
+        <br />
+        <b>FWC Membership Team</b>
+        <br /><br />
+        🌍 <i>One World, One Community, One Future</i>
+        <br />
+        📩 <a href="mailto:info@fwc-india.org">Info@fwc-india.org</a> | 🌐 <a href="https://firstworldcommunity.org" target="_blank">firstworldcommunity.org</a>
+      </p>
+    </div>
       `,
   };
 
