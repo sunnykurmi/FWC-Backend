@@ -12,7 +12,7 @@ exports.isAuthenticated = catchAsyncErrors(async (req, res, next) => {
     if (authHeader) {
         token = authHeader.split(' ')[1];
     } else {
-        // token = cookiestoken;
+        token = cookiestoken;
     }
 
     if (!token) {
