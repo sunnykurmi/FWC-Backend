@@ -14,6 +14,10 @@ const PaymentSchema = new mongoose.Schema({
     signature: {
         type: String
     },
+    useremail:{
+        type: String,
+        required: true
+    },
     amount: {
         type: Number,
         required: true

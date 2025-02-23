@@ -1,7 +1,11 @@
 let express = require("express");
-const { homepage, create_user, login_user, logout_user, current_user ,google_auth } = require("../controllers/user.controllers");
+const { homepage, create_user, login_user, logout_user, current_user, google_auth, all_users } = require("../controllers/user.controllers");
 const { isAuthenticated } = require("../middlewares/auth");
+const { isAdmin } = require("../middlewares/isAdmin");
 let router = express.Router();
+
+// all members  route
+router.route("/all_users").get(isAuthenticated, isAdmin, all_users);
 
 // route for google auth
 router.route("/google_auth").get(google_auth)

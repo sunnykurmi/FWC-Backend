@@ -8,6 +8,7 @@ let imagekit = require("../utils/imagekit.js").initImageKit();
 
 const MemberSchema = require("../models/member.schema.js");
 const PaymentSchema = require("../models/payment.schema.js");
+const userSchema = require("../models/user.schema.js");
 
 exports.all_members = catchAsyncErrors(async (req, res, next) => {
   let members = await MemberSchema.find()
@@ -16,7 +17,7 @@ exports.all_members = catchAsyncErrors(async (req, res, next) => {
 })
 
 exports.create_member = catchAsyncErrors(async (req, res, next) => {
-  const { email, fullName, contact , city, country } = req.body;
+  const { email, fullName, contact, city, country } = req.body;
 
   if (!email || !fullName || !contact || !city || !country) {
     return next(new ErrorHandler("All required fields must be provided", 400));
@@ -52,7 +53,7 @@ exports.create_member = catchAsyncErrors(async (req, res, next) => {
       pass: process.env.MAIL_PASSWORD,
     },
   });
-  
+
   const mailOptions = {
     from: "First World Community",
     to: email,
@@ -108,39 +109,39 @@ exports.create_member = catchAsyncErrors(async (req, res, next) => {
 // create payment
 exports.createpayment = catchAsyncErrors(async (req, res, next) => {
   try {
-     
-  const { email, fullName, contact , city, country } = req.body;
 
-  if (!email || !fullName || !contact || !city || !country) {
-    return next(new ErrorHandler("All required fields must be provided", 400));
-  }
+    const { email, fullName, contact, city, country } = req.body;
 
-  // const existedMember = await MemberSchema.findOne({ email });
-
-  // if (existedMember) {
-  //   return next(new ErrorHandler("Member with this email already exists", 409));
-  // }
-
-  const schemaFields = Object.keys(MemberSchema.schema.paths);
-  const requestBodyFields = Object.keys(req.body);
-
-  requestBodyFields.forEach(field => {
-    if (!schemaFields.includes(field)) {
-      MemberSchema.schema.add({ [field]: { type: mongoose.Schema.Types.Mixed } });
+    if (!email || !fullName || !contact || !city || !country) {
+      return next(new ErrorHandler("All required fields must be provided", 400));
     }
-  });
 
-  const member = await MemberSchema.create(req.body);
+    // const existedMember = await MemberSchema.findOne({ email });
 
-  if (!member) {
-    return next(new ErrorHandler("Member not created", 400));
-  }
+    // if (existedMember) {
+    //   return next(new ErrorHandler("Member with this email already exists", 409));
+    // }
+
+    const schemaFields = Object.keys(MemberSchema.schema.paths);
+    const requestBodyFields = Object.keys(req.body);
+
+    requestBodyFields.forEach(field => {
+      if (!schemaFields.includes(field)) {
+        MemberSchema.schema.add({ [field]: { type: mongoose.Schema.Types.Mixed } });
+      }
+    });
+
+    const member = await MemberSchema.create(req.body);
+
+    if (!member) {
+      return next(new ErrorHandler("Member not created", 400));
+    }
     const order = await member.createOrder();
 
     // Save initial payment details without paymentId
     const payment = new PaymentSchema({
       orderId: order.id,
-      useremail: email,    
+      useremail: email,
       amount: order.amount,
       status: "created",
     });
@@ -209,7 +210,7 @@ exports.verifypayment = catchAsyncErrors(async (req, res, next) => {
 //paymentsuccess rout for send mail to user
 
 exports.paymentsuccess = catchAsyncErrors(async (req, res, next) => {
-     const user_email = req.body;
+  const user_email = req.body;
   try {
     const payment = await PaymentSchema.findOne({ paymentId: req.params.id });
     if (!payment) {
@@ -274,3 +275,25 @@ exports.paymentsuccess = catchAsyncErrors(async (req, res, next) => {
     res.status(500).json({ message: error.message });
   }
 });
+
+///rout to approve member
+exports.approve_member = catchAsyncErrors(async (req, res, next) => {
+  const { email } = req.body;
+  const user = await userSchema.findOne({ email });
+  if (!user) return next(new ErrorHandler("User not found", 404));
+  user.role = "member"
+  await user.save();
+  res.json({ success: true, message: "Member approved successfully" });
+}
+);
+
+// rout to remove member
+exports.remove_member = catchAsyncErrors(async (req, res, next) => {
+  const { email } = req.body;
+  const user = await userSchema.findOne({ email });
+  if (!user) return next(new ErrorHandler("User not found", 404));
+  user.role = "user"
+  await user.save();
+  res.json({ success: true, message: "Member removed successfully" });
+}
+);

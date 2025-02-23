@@ -9,6 +9,11 @@ const UserSchema = require("../models/user.schema.js");
 const { oauth2Client } = require("../utils/googleConfig.js");
 const axios = require("axios");
 
+exports.all_users = catchAsyncErrors(async (req, res, next) => {
+  let users = await UserSchema.find();
+  if (!users) return next(new ErrorHandler("Users not found", 404));
+  res.json({ success: true, users: users });
+});
 
 exports.current_user = catchAsyncErrors(async (req, res, next) => {
   let user = await UserSchema.findById(req.id)
