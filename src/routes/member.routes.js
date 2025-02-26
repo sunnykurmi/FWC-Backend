@@ -1,5 +1,5 @@
 let express = require("express");
-const { create_member, all_members, createpayment, verifypayment, paymentsuccess, approve_member, remove_member } = require("../controllers/member.controllers");
+const { create_member, all_members, createpayment, verifypayment, paymentsuccess, approve_member, remove_member , all_members_payments } = require("../controllers/member.controllers");
 const { isAuthenticated } = require("../middlewares/auth");
 const { isAdmin } = require("../middlewares/isAdmin");
 let router = express.Router();
@@ -24,6 +24,10 @@ router.route("/approve_member").post(isAuthenticated, isAdmin, approve_member)
 
 // route for remove member
 router.route("/remove_member").post(isAuthenticated, isAdmin, remove_member)
+
+
+// route for remove member
+router.route("/all_members_payments").post(isAuthenticated, isAdmin, all_members_payments)
 
 
 

@@ -309,3 +309,13 @@ exports.remove_member = catchAsyncErrors(async (req, res, next) => {
   res.json({ success: true, message: "Member removed successfully" });
 }
 );
+
+
+
+///rout to get all members payments
+exports.all_members_payments = catchAsyncErrors(async (req, res, next) => {
+  let payments = await PaymentSchema.find().populate("form");
+  if (!payments) return next(new ErrorHandler("Payments not found", 404));
+  res.json({ success: true, payments });
+}
+);
