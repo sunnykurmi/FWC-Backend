@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Member = require('./member.schema.js');
 
 const PaymentSchema = new mongoose.Schema({
     orderId: {
@@ -14,9 +15,13 @@ const PaymentSchema = new mongoose.Schema({
     signature: {
         type: String
     },
-    useremail:{
+    useremail: {
         type: String,
         required: true
+    },
+    form: {
+        ref: 'member',
+        type: mongoose.Schema.Types.ObjectId,
     },
     amount: {
         type: Number,
@@ -41,6 +46,16 @@ const PaymentSchema = new mongoose.Schema({
 
 // Create TTL index on expireAt field
 PaymentSchema.index({ expireAt: 1 }, { expireAfterSeconds: 0 });
+
+// Middleware to delete the linked member form when a payment is deleted
+PaymentSchema.pre('remove', async function(next) {
+    try {
+        await Member.findByIdAndDelete(this.form);
+        next();
+    } catch (error) {
+        next(error);
+    }
+});
 
 const Payment = mongoose.model('members-payment', PaymentSchema);
 

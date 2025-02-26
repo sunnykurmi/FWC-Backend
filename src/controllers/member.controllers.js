@@ -136,11 +136,20 @@ exports.createpayment = catchAsyncErrors(async (req, res, next) => {
     if (!member) {
       return next(new ErrorHandler("Member not created", 400));
     }
-    const order = await member.createOrder();
+    let order;
+    try {
+      order = await member.createOrder();
+    } catch (error) {
+      return next(new ErrorHandler("Order creation failed: " + error.message, 500));
+    }
 
+    if (!order) {
+      return next(new ErrorHandler("Order not created", 500));
+    }
     // Save initial payment details without paymentId
     const payment = new PaymentSchema({
       orderId: order.id,
+      form: member._id,
       useremail: email,
       amount: order.amount,
       status: "created",
