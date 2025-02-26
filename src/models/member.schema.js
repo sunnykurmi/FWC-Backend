@@ -38,7 +38,7 @@ let memberSchema = new mongoose.Schema({
         trim: true,
     },
     amount: {
-        type: String,
+        type: Number,
         required: true,
     },    
 }, { timestamps: true });
@@ -55,7 +55,7 @@ const razorpay = new Razorpay({
 // Method to create an order
 memberSchema.methods.createOrder = async function() {
     const options = {
-        amount: this.amount * 100, // amount in the smallest currency unit
+        amount: Math.round(this.amount * 100), // amount in the smallest currency unit
         currency: "INR",
         receipt: `receipt_${this._id}`
     };

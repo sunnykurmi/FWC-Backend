@@ -110,9 +110,9 @@ exports.create_member = catchAsyncErrors(async (req, res, next) => {
 exports.createpayment = catchAsyncErrors(async (req, res, next) => {
   try {
 
-    const { email, fullName, contact, city, country } = req.body;
+    const { email, fullName, contact, city, country ,amount } = req.body;
 
-    if (!email || !fullName || !contact || !city || !country) {
+    if (!email || !fullName || !contact || !city || !country || !amount) {
       return next(new ErrorHandler("All required fields must be provided", 400));
     }
 
@@ -136,7 +136,9 @@ exports.createpayment = catchAsyncErrors(async (req, res, next) => {
     if (!member) {
       return next(new ErrorHandler("Member not created", 400));
     }
+
     let order;
+
     try {
       order = await member.createOrder();
     } catch (error) {
@@ -146,6 +148,7 @@ exports.createpayment = catchAsyncErrors(async (req, res, next) => {
     if (!order) {
       return next(new ErrorHandler("Order not created", 500));
     }
+    
     // Save initial payment details without paymentId
     const payment = new PaymentSchema({
       orderId: order.id,
