@@ -295,6 +295,85 @@ exports.approve_member = catchAsyncErrors(async (req, res, next) => {
   if (!user) return next(new ErrorHandler("User not found", 404));
   user.role = "member"
   await user.save();
+
+
+  const transport = nodemailer.createTransport({
+    service: "gmail",
+    host: "smtp.gmail.com",
+    post: 465,
+    auth: {
+      user: process.env.MAIL_EMAIL_ADDRESS,
+      pass: process.env.MAIL_PASSWORD,
+    },
+  });
+
+  const mailOptions = {
+    from: "First World Community",
+    to: email,
+    subject: "🎉 Welcome to First World Community – Your Application is Approved! 🚀",
+    html: `
+         <div style="text-align: start; width: 80%; font-family: Arial, sans-serif; color: #333; font-size: 1.2vw; margin: auto; padding: 20px; border: 2px solid #333; border-radius: 10px;">
+      <p>
+        Dear <b>${user.name}</b>,
+        <br /><br />
+        Congratulations! 🎉 We are thrilled to inform you that your FWC Membership application has been approved! You are now officially a part of First World Community (FWC), a powerful network of entrepreneurs, business leaders, and innovators committed to growth, collaboration, and impact.
+        <br /><br />
+        At FWC, we support, guide, and connect our members to unlock new opportunities, scale businesses, and drive meaningful change. Our team will now proceed with onboarding you into the community.
+        <br /><br />
+        🔥 <b>What Happens Next?</b>
+        <br />
+        ✅ <b>Step 1: WhatsApp Group Onboarding</b><br />
+        Our team will add you to exclusive FWC WhatsApp groups, where you’ll connect with members, discuss opportunities, and get real-time updates.
+        <br /><br />
+        ✅ <b>Step 2: Introduce Yourself</b><br />
+        Once added, please share a short introduction:
+        <br />
+        📌 Your Name<br />
+        📌 Your Business/Industry<br />
+        📌 Your Goals & How FWC Can Support You
+        <br /><br />
+        ✅ <b>Step 3: Connect & Engage</b><br />
+        Network with fellow members and share insights.<br />
+        Ask for help, guidance, and collaborations.<br />
+        Participate in FWC events, masterclasses, and funding sessions.
+        <br /><br />
+        ✅ <b>Step 4: Follow FWC Community Guidelines</b><br />
+        To maintain a productive, positive, and impactful environment, all members must adhere to our rules & policies:
+        <br />
+        🔹 Be respectful & professional in all interactions.<br />
+        🔹 No spamming, promotions, or unsolicited sales pitches.<br />
+        🔹 Actively participate in discussions & events.<br />
+        🔹 Build meaningful connections and contribute to the community.
+        <br /><br />
+        🌍 <b>Welcome to a Global Community of Changemakers!</b>
+        <br />
+        We are excited to have you on board and look forward to seeing you grow, succeed, and make an impact with FWC! If you have any questions or need support, our team is always here to help.
+        <br /><br />
+        🚀 <b>Welcome to First World Community – One World, One Community, One Future!</b>
+        <br /><br />
+        Best Regards,
+        <br />
+        <b>FWC Membership Team</b>
+        <br /><br />
+        📩 <a href="mailto:info@fwc-india.org">Info@fwc-india.org</a> | 🌐 <a href="https://firstworldcommunity.org" target="_blank">firstworldcommunity.org</a>
+      </p>
+    </div>
+      `,
+  };
+  
+
+  transport.sendMail(mailOptions, (err, info) => {
+    if (err) return next(new ErrorHandler(err, 500));
+    res
+      .status(200)
+      .json({ message: "Payment successful", status: payment.status });
+  });
+
+
+
+
+
+
   res.json({ success: true, message: "Member approved successfully" });
 }
 );
