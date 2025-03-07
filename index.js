@@ -55,8 +55,12 @@ app.get("/", (req, res) => {
     message: "Welcome to FWC API",
   });
 });
+
 app.use("/user", require("./src/routes/user.routes.js"));
 app.use("/member", require("./src/routes/member.routes.js"));
+app.use("/admin", require("./src/routes/admin.routes.js"));
+app.use("/meetups", require("./src/routes/meetups.routes.js"));
+app.use("/events", require("./src/routes/events.routes.js"));
 
 
 
