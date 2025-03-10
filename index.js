@@ -15,21 +15,18 @@ const cors = require("cors");
 
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173",
-      "https://fwc-india.org"
-    ],
+    origin: ["http://localhost:5173", "https://fwc-india.org"],
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
   })
 );
 
-// app.use((req, res, next) => {
-//   res.setHeader("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
-//   res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
-//   next();
-// });
+app.use((req, res, next) => {
+  res.setHeader("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
+  res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
+  next();
+});
 
 // body parser
 app.use(express.json());
@@ -43,7 +40,11 @@ app.use(
   session({
     resave: false,
     saveUninitialized: false,
-    secret: process.env.EXPRESS_SESSION_SECRET, 
+    secret: process.env.EXPRESS_SESSION_SECRET,
+    cookie: {
+      secure: true, // Ensure cookies are only sent over HTTPS
+      sameSite: "None", // Allow cross-site cookies
+    },
   })
 );
 
@@ -51,8 +52,6 @@ app.use(cookieparser());
 // express file-upload
 const fileupload = require("express-fileupload");
 app.use(fileupload());
-
-
 
 // routes
 app.get("/", (req, res) => {
@@ -68,8 +67,6 @@ app.use("/admin", require("./src/routes/admin.routes.js"));
 app.use("/meetups", require("./src/routes/meetups.routes.js"));
 app.use("/events", require("./src/routes/events.routes.js"));
 app.use("/masterClass", require("./src/routes/masterClass.routes.js"));
-
-
 
 // Error handling
 const ErrorHandler = require("./src/utils/ErrorHandler.js");
