@@ -13,20 +13,24 @@ app.use(require("morgan")("tiny"));
 // cors integration
 const cors = require("cors");
 
+const allowedOrigins = ["http://localhost:5173", "https://fwc-india.org"];
+
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://fwc-india.org"],
+    origin: (origin, callback) => {
+      // Allow requests with no origin (e.g., Postman, mobile apps)
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
+    maxAge: 86400, // Cache preflight responses for 24 hours
   })
 );
-
-// app.use((req, res, next) => {
-//   res.setHeader("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
-//   res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
-//   next();
-// });
 
 // body parser
 app.use(express.json());
@@ -41,6 +45,11 @@ app.use(
     resave: false,
     saveUninitialized: false,
     secret: process.env.EXPRESS_SESSION_SECRET,
+    cookie: {
+      sameSite: "None", // Allow cross-site requests
+      secure: process.env.NODE_ENV === "production", // Use secure cookies in production
+      httpOnly: true, // Prevents JavaScript access to cookies
+    },
   })
 );
 
