@@ -5,21 +5,14 @@ const User = require("../models/user.schema");
 
 exports.isAuthenticated = catchAsyncErrors(async (req, res, next) => {
     const authHeader = req.headers.authorization;
-    const cookiestoken = req.cookies.twk_fwc;
 
-    var token
-    
-    if (authHeader) {
-        token = authHeader.split(' ')[1];
-    } else {
-        token = cookiestoken;
-    }
-
-    if (!token) {
+    if (!authHeader) {
         return next(
             new ErrorHandler("Not Authorized. Login Again", 401)
         );
     }
+
+    const token = authHeader.split(' ')[1];
 
     try {
         const { id } = jwt.verify(token, process.env.JWT_SECRET);
