@@ -25,11 +25,11 @@ app.use(
   })
 );
 
-app.use((req, res, next) => {
-  res.setHeader("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
-  res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
-  next();
-});
+// app.use((req, res, next) => {
+//   res.setHeader("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
+//   res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
+//   next();
+// });
 
 // body parser
 app.use(express.json());
@@ -67,8 +67,7 @@ app.use("/member", require("./src/routes/member.routes.js"));
 app.use("/admin", require("./src/routes/admin.routes.js"));
 app.use("/meetups", require("./src/routes/meetups.routes.js"));
 app.use("/events", require("./src/routes/events.routes.js"));
-
-
+app.use("/masterClass", require("./src/routes/masterClass.routes.js"));
 
 
 
