@@ -22,11 +22,11 @@ app.use(
   })
 );
 
-app.use((req, res, next) => {
-  res.setHeader("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
-  res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
-  next();
-});
+// app.use((req, res, next) => {
+//   res.setHeader("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
+//   res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
+//   next();
+// });
 
 // body parser
 app.use(express.json());
@@ -41,10 +41,6 @@ app.use(
     resave: false,
     saveUninitialized: false,
     secret: process.env.EXPRESS_SESSION_SECRET,
-    cookie: {
-      secure: true, // Ensure cookies are only sent over HTTPS
-      sameSite: "None", // Allow cross-site cookies
-    },
   })
 );
 
