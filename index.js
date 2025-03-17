@@ -71,6 +71,7 @@ app.use("/member", require("./src/routes/member.routes.js"));
 app.use("/admin", require("./src/routes/admin.routes.js"));
 app.use("/meetups", require("./src/routes/meetups.routes.js"));
 app.use("/events", require("./src/routes/events.routes.js"));
+app.use("/investment_circle", require("./src/routes/investmentCircle.routes.js"));
 app.use("/masterClass", require("./src/routes/masterClass.routes.js"));
 
 // Error handling
