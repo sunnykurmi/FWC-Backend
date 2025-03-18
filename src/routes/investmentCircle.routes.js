@@ -9,7 +9,7 @@ router.route("/all_investment_circle").post(isAuthenticated, isAdmin, all_invest
 
 
 // create rout of events
-router.route("/create_investment_circle").post(isAuthenticated, create_investment_circle);
+router.route("/create_investment_circle").post(isAuthenticated,create_investment_circle);
 
 
 module.exports = router;

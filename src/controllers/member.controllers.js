@@ -531,7 +531,6 @@ exports.submit_fwc_athithi_request = catchAsyncErrors(
 
 // route for all atithi
 exports.all_fwc_atithi = catchAsyncErrors(async (req, res, next) => {
-  console.log("all fwc atithi");
   let atithiRequests = await atithiRequestsSchema.find();
   if (!atithiRequests)
     return next(new ErrorHandler("Atithi requests not found", 404));

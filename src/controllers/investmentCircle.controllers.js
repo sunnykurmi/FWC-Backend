@@ -41,6 +41,7 @@ exports.create_investment_circle = catchAsyncErrors(async (req, res, next) => {
       usp
     } = req.body;
 
+
     const newInvestmentCircle = new InvestmentCircleSchema({
       name,
       website,
