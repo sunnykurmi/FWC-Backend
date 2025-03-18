@@ -45,6 +45,6 @@ router
 router.route("/submit-fwc-athithi-request").post(isAuthenticated,submit_fwc_athithi_request);
 
 // route for all fwc atithi
-router.route("/all-fwc-athithi").get(isAuthenticated, isAdmin, all_fwc_atithi);
+router.route("/all-fwc-athithi").post(isAuthenticated, isAdmin, all_fwc_atithi);
 
 module.exports = router;
