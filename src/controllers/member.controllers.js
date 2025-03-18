@@ -9,56 +9,55 @@ let imagekit = require("../utils/imagekit.js").initImageKit();
 const MemberSchema = require("../models/member.schema.js");
 const PaymentSchema = require("../models/payment.schema.js");
 const userSchema = require("../models/user.schema.js");
+const atithiRequestsSchema = require("../models/atithiRequests.schema.js");
 
 exports.all_members = catchAsyncErrors(async (req, res, next) => {
-  let members = await MemberSchema.find()
+  let members = await MemberSchema.find();
   if (!members) return next(new ErrorHandler("Members not found", 404));
   res.json({ success: true, members });
-})
+});
 
 exports.create_member = catchAsyncErrors(async (req, res, next) => {
   const { email, fullName, contact, city, country } = req.body;
+  const userId = req.user._id; 
 
-  if (!email || !fullName || !contact || !city || !country) {
+  if (!email || !fullName || !contact || !city || !country || !userId) {
     return next(new ErrorHandler("All required fields must be provided", 400));
   }
 
-  // const existedMember = await MemberSchema.findOne({ email });
+  try {
+    const schemaFields = Object.keys(MemberSchema.schema.paths);
+    const requestBodyFields = Object.keys(req.body);
 
-  // if (existedMember) {
-  //   return next(new ErrorHandler("Member with this email already exists", 409));
-  // }
+    requestBodyFields.forEach((field) => {
+      if (!schemaFields.includes(field)) {
+        MemberSchema.schema.add({
+          [field]: { type: mongoose.Schema.Types.Mixed },
+        });
+      }
+    });
 
-  const schemaFields = Object.keys(MemberSchema.schema.paths);
-  const requestBodyFields = Object.keys(req.body);
-
-  requestBodyFields.forEach(field => {
-    if (!schemaFields.includes(field)) {
-      MemberSchema.schema.add({ [field]: { type: mongoose.Schema.Types.Mixed } });
+    const memberData = { ...req.body, userId }; // Include userId in the member data
+    const member = await MemberSchema.create(memberData);
+    if (!member) {
+      return next(new ErrorHandler("Member not created", 400));
     }
-  });
 
-  const member = await MemberSchema.create(req.body);
+    const transport = nodemailer.createTransport({
+      service: "gmail",
+      host: "smtp.gmail.com",
+      post: 465,
+      auth: {
+        user: process.env.MAIL_EMAIL_ADDRESS,
+        pass: process.env.MAIL_PASSWORD,
+      },
+    });
 
-  if (!member) {
-    return next(new ErrorHandler("Member not created", 400));
-  }
-
-  const transport = nodemailer.createTransport({
-    service: "gmail",
-    host: "smtp.gmail.com",
-    post: 465,
-    auth: {
-      user: process.env.MAIL_EMAIL_ADDRESS,
-      pass: process.env.MAIL_PASSWORD,
-    },
-  });
-
-  const mailOptions = {
-    from: "First World Community",
-    to: email,
-    subject: "Your FWC Financial Aid Application is Under Review 🚀",
-    html: `
+    const mailOptions = {
+      from: "First World Community",
+      to: email,
+      subject: "Your FWC Financial Aid Application is Under Review 🚀",
+      html: `
          <div style="text-align: start; width: 80%; font-family: Arial, sans-serif; color: #333; font-size: 1.2vw; margin: auto; padding: 20px; border: 2px solid #333; border-radius: 10px;">
       <p>
         Dear <b>${email}</b>,
@@ -91,29 +90,31 @@ exports.create_member = catchAsyncErrors(async (req, res, next) => {
       </p>
     </div>
       `,
-  };
+    };
 
-  transport.sendMail(mailOptions, (err, info) => {
-    if (err) return next(new ErrorHandler(err, 500));
-    res
-      .status(200)
-      .json({ message: "Payment successful", status: payment.status });
-  });
+    transport.sendMail(mailOptions, (err, info) => {
+      if (err) return next(new ErrorHandler(err, 500));
+      res
+        .status(200)
+        .json({ message: "Payment successful", status: payment.status });
+    });
 
-  res.json({ success: true, message: "Member created successfully" });
-
+    res.json({ success: true, message: "Member created successfully" });
+  } catch (error) {
+    console.error("Error creating member:", error);
+    res.status(500).json({ message: error.message });
+  }
 });
-
-
 
 // create payment
 exports.createpayment = catchAsyncErrors(async (req, res, next) => {
   try {
-
-    const { email, fullName, contact, city, country ,amount } = req.body;
+    const { email, fullName, contact, city, country, amount } = req.body;
 
     if (!email || !fullName || !contact || !city || !country || !amount) {
-      return next(new ErrorHandler("All required fields must be provided", 400));
+      return next(
+        new ErrorHandler("All required fields must be provided", 400)
+      );
     }
 
     // const existedMember = await MemberSchema.findOne({ email });
@@ -125,9 +126,11 @@ exports.createpayment = catchAsyncErrors(async (req, res, next) => {
     const schemaFields = Object.keys(MemberSchema.schema.paths);
     const requestBodyFields = Object.keys(req.body);
 
-    requestBodyFields.forEach(field => {
+    requestBodyFields.forEach((field) => {
       if (!schemaFields.includes(field)) {
-        MemberSchema.schema.add({ [field]: { type: mongoose.Schema.Types.Mixed } });
+        MemberSchema.schema.add({
+          [field]: { type: mongoose.Schema.Types.Mixed },
+        });
       }
     });
 
@@ -142,13 +145,15 @@ exports.createpayment = catchAsyncErrors(async (req, res, next) => {
     try {
       order = await member.createOrder();
     } catch (error) {
-      return next(new ErrorHandler("Order creation failed: " + error.message, 500));
+      return next(
+        new ErrorHandler("Order creation failed: " + error.message, 500)
+      );
     }
 
     if (!order) {
       return next(new ErrorHandler("Order not created", 500));
     }
-    
+
     // Save initial payment details without paymentId
     const payment = new PaymentSchema({
       orderId: order.id,
@@ -181,7 +186,9 @@ exports.verifypayment = catchAsyncErrors(async (req, res, next) => {
     const isValid = MemberSchema.verifyPayment(paymentDetails);
     if (isValid) {
       // Update payment details
-      const payment = await PaymentSchema.findOne({ orderId: razorpay_order_id });
+      const payment = await PaymentSchema.findOne({
+        orderId: razorpay_order_id,
+      });
 
       if (!payment) {
         return res.status(404).json({ message: "Payment record not found" });
@@ -198,7 +205,9 @@ exports.verifypayment = catchAsyncErrors(async (req, res, next) => {
       );
     } else {
       // Update payment status to failed
-      const payment = await PaymentSchema.findOne({ orderId: razorpay_order_id });
+      const payment = await PaymentSchema.findOne({
+        orderId: razorpay_order_id,
+      });
 
       if (!payment) {
         return res.status(404).json({ message: "Payment record not found" });
@@ -291,11 +300,22 @@ exports.paymentsuccess = catchAsyncErrors(async (req, res, next) => {
 ///rout to approve member
 exports.approve_member = catchAsyncErrors(async (req, res, next) => {
   const { email } = req.body;
+
+  // Find user by email
   const user = await userSchema.findOne({ email });
   if (!user) return next(new ErrorHandler("User not found", 404));
-  user.role = "member"
-  await user.save();
 
+  // Find member details
+  const member = await MemberSchema.findOne({ email });
+  if (!member) return next(new ErrorHandler("Member details not found", 404));
+
+  // Update user role and add member details
+  user.role = "member";
+  user.city = member.city;
+  user.country = member.country;
+  user.contact = member.contact;
+  user.linkedinProfile = member.linkedinProfile;
+  await user.save();
 
   const transport = nodemailer.createTransport({
     service: "gmail",
@@ -310,7 +330,8 @@ exports.approve_member = catchAsyncErrors(async (req, res, next) => {
   const mailOptions = {
     from: "First World Community",
     to: email,
-    subject: "🎉 Welcome to First World Community – Your Application is Approved! 🚀",
+    subject:
+      "🎉 Welcome to First World Community – Your Application is Approved! 🚀",
     html: `
          <div style="text-align: start; width: 80%; font-family: Arial, sans-serif; color: #333; font-size: 1.2vw; margin: auto; padding: 20px; border: 2px solid #333; border-radius: 10px;">
       <p>
@@ -360,7 +381,6 @@ exports.approve_member = catchAsyncErrors(async (req, res, next) => {
     </div>
       `,
   };
-  
 
   transport.sendMail(mailOptions, (err, info) => {
     if (err) return next(new ErrorHandler(err, 500));
@@ -369,32 +389,151 @@ exports.approve_member = catchAsyncErrors(async (req, res, next) => {
       .json({ message: "Payment successful", status: payment.status });
   });
 
-
-
-
-
-
   res.json({ success: true, message: "Member approved successfully" });
-}
-);
+});
 
 // rout to remove member
 exports.remove_member = catchAsyncErrors(async (req, res, next) => {
   const { email } = req.body;
   const user = await userSchema.findOne({ email });
   if (!user) return next(new ErrorHandler("User not found", 404));
-  user.role = "user"
+  user.role = "user";
   await user.save();
   res.json({ success: true, message: "Member removed successfully" });
-}
-);
-
-
+});
 
 ///rout to get all members payments
 exports.all_members_payments = catchAsyncErrors(async (req, res, next) => {
   let payments = await PaymentSchema.find().populate("form");
   if (!payments) return next(new ErrorHandler("Payments not found", 404));
   res.json({ success: true, payments });
-}
+});
+
+//  route for fwc atithi
+exports.submit_fwc_athithi_request = catchAsyncErrors(
+  async (req, res, next) => {
+    try {
+      const {
+        travelerName,
+        travelerEmail,
+        destinationCity,
+        arrivalDate,
+        departureDate,
+        purpose,
+        food,
+        additionalNotes,
+      } = req.body;
+
+      // Ensure the user is logged in
+      if (!req.user) {
+        return res.status(401).json({ message: "Unauthorized: Please log in" });
+      }
+
+      // Ensure the user is a member
+      if (req.user.role !== "member") {
+        return res.status(403).json({ message: "Only members can apply" });
+      }
+
+      // Save the travel request
+      const newRequest = new atithiRequestsSchema({
+        travelerName,
+        travelerEmail,
+        destinationCity,
+        arrivalDate,
+        departureDate,
+        purpose,
+        food,
+        additionalNotes,
+      });
+      await newRequest.save();
+
+      // Find members in the destination city from userSchema where role is "member"
+      const membersInCity = await userSchema.find({
+        role: "member",
+        city: destinationCity.toLowerCase(),
+      });
+
+      if (membersInCity.length === 0) {
+        return res
+          .status(404)
+          .json({ message: "No members found in this city" });
+      }
+
+      const transport = nodemailer.createTransport({
+        service: "gmail",
+        host: "smtp.gmail.com",
+        post: 465,
+        auth: {
+          user: process.env.MAIL_EMAIL_ADDRESS,
+          pass: process.env.MAIL_PASSWORD,
+        },
+      });
+
+      const mailOptions = {
+        from: "First World Community",
+        bcc: membersInCity.map((member) => member.email),
+        subject: `Accommodation Request – FWC Atithi Program: ${travelerName} is visiting ${destinationCity}`,
+        html: `
+        <div style="font-family: Arial, sans-serif; color: #333; font-size: 16px; line-height: 1.6;">
+          <p>Dear Member,</p>
+
+          <p>We hope this message finds you well.</p>
+
+          <p>
+            This email is to inform you that <strong>${travelerName}</strong> will be visiting <strong>${destinationCity}</strong> from 
+            <strong>${arrivalDate}</strong> to <strong>${departureDate}</strong> and has expressed interest in connecting with the local 
+            community during their stay. The primary purpose of their visit is <strong>${purpose}</strong>.
+          </p>
+
+          <p>
+            To enhance their experience and foster meaningful connections, we are reaching out to our trusted network in 
+            <strong>${destinationCity}</strong> to offer support. If you are available and open to hosting or assisting 
+            <strong>${travelerName}</strong>, we kindly ask you to confirm your accommodation or assistance through this email.
+          </p>
+
+          <h3 style="color: #2C3E50;">Important Details:</h3>
+          <ul>
+            <li><strong>Visitor’s Name:</strong> ${travelerName}</li>
+            <li><strong>Duration of Stay:</strong> ${arrivalDate} to ${departureDate}</li>
+            <li><strong>Purpose of Visit:</strong> ${purpose}</li>
+            <li><strong>Dietary Preferences:</strong> ${food}</li>
+            <li><strong>Additional Notes:</strong> ${additionalNotes}</li>
+          </ul>
+
+          <p>
+            If you are willing to accommodate or assist <strong>${travelerName}</strong>, kindly reply to this email with your confirmation.
+            Once approved, we will provide both parties’ contact details to facilitate further communication and coordination.
+          </p>
+
+          <p>We appreciate your support in making <strong>FWC Atithi</strong> a success and thank you for your willingness to contribute 
+          to this valuable community initiative.</p>
+
+          <p>We look forward to hearing from you soon.</p>
+
+          <p><strong>Best regards,</strong></p>
+          <p><strong>FWC Atithi Program Coordinator</strong><br>
+          <strong>First World Community (FWC)</strong></p>
+        </div>`,
+      };
+
+      transport.sendMail(mailOptions, (err, info) => {
+        if (err) return next(new ErrorHandler(err, 500));
+        res.status(200).json({
+          message: "Atithi request submitted and emails sent!",
+          success: true,
+        });
+      });
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
 );
+
+// route for all atithi
+exports.all_fwc_atithi = catchAsyncErrors(async (req, res, next) => {
+  console.log("all fwc atithi");
+  let atithiRequests = await atithiRequestsSchema.find();
+  if (!atithiRequests)
+    return next(new ErrorHandler("Atithi requests not found", 404));
+  res.json({ success: true, atithiRequests });
+});
