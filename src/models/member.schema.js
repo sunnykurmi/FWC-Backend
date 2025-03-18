@@ -6,6 +6,11 @@ const crypto = require('crypto');
 
 
 let memberSchema = new mongoose.Schema({
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "user",  // Reference to User Schema
+        required: true
+    },
     fullName: {
         type: String,
         required: true,
