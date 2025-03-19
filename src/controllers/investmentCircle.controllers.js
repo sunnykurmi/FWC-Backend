@@ -41,6 +41,14 @@ exports.create_investment_circle = catchAsyncErrors(async (req, res, next) => {
       usp
     } = req.body;
 
+    // const userId = req.id;
+    // console.log(req.id);
+
+    // // Check if an entry already exists for the user
+    // const existingEntry = await InvestmentCircleSchema.findOne({ userId });
+    // if (existingEntry) {
+    //   return next(new ErrorHandler("You have already submitted this form", 400));
+    // }
 
     const newInvestmentCircle = new InvestmentCircleSchema({
       name,

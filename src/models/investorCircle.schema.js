@@ -1,52 +1,60 @@
-let mongoose = require('mongoose');
+let mongoose = require("mongoose");
 
-let schema = new mongoose.Schema({
+let schema = new mongoose.Schema(
+  {
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "user", // Reference to User Schema
+      required: true,
+    },
     name: {
-        type: String,
-        required: true,
-        trim: true,
-        maxlength: 100,
+      type: String,
+      required: true,
+      trim: true,
+      maxlength: 100,
     },
     website: {
-        type: String,
-        required: true,
-        trim: true,
+      type: String,
+      required: true,
+      trim: true,
     },
     description: {
-        type: String,
-        required: true,
-        trim: true,
+      type: String,
+      required: true,
+      trim: true,
     },
     socialMedia: {
-        type: String,
-        required: true,
-        trim: true,
+      type: String,
+      required: true,
+      trim: true,
     },
     valuation: {
-        type: String,
-        required: true,
-        trim: true,
+      type: String,
+      required: true,
+      trim: true,
     },
     incorporate: {
-        type: String, // Add the type here
-        enum: ['yes', 'no'],
-        default: 'no',
+      type: String, // Add the type here
+      enum: ["yes", "no"],
+      default: "no",
     },
     incorporationNumber: {
-        type: String,
+      type: String,
     },
     investmentDetails: {
-        type: String,
+      type: String,
     },
     funding: {
-        type: String,
+      type: String,
     },
     fundingUse: {
-        type: String,
+      type: String,
     },
     usp: {
-        type: String,
-    }
-}, { timestamps: true });
+      type: String,
+    },
+  },
+  { timestamps: true }
+);
 
-module.exports = mongoose.model('investor_circle', schema);
+module.exports = mongoose.model("investor_circle", schema);
