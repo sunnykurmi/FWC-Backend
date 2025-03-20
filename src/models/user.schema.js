@@ -12,6 +12,10 @@ let userSchema = new mongoose.Schema(
       minlength: 2,
       lowercase: true,
     },
+    investmentCircle:{
+      type: String,
+      default: "empty",
+    },
     email: {
       type: String,
       required: true,

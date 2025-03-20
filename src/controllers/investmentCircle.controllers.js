@@ -28,6 +28,7 @@ exports.all_investment_circle = catchAsyncErrors(async (req, res, next) => {
 exports.create_investment_circle = catchAsyncErrors(async (req, res, next) => {
   try {
     const {
+      userId,
       name,
       website,
       description,
@@ -41,16 +42,15 @@ exports.create_investment_circle = catchAsyncErrors(async (req, res, next) => {
       usp
     } = req.body;
 
-    // const userId = req.id;
-    // console.log(req.id);
-
-    // // Check if an entry already exists for the user
-    // const existingEntry = await InvestmentCircleSchema.findOne({ userId });
-    // if (existingEntry) {
-    //   return next(new ErrorHandler("You have already submitted this form", 400));
-    // }
+    const user = await UserSchema.findById(userId); 
+    if (!user) {
+      return next(new ErrorHandler("User not found", 404));
+    }
+    user.investmentCircle = "filled";
+    await user.save();
 
     const newInvestmentCircle = new InvestmentCircleSchema({
+      userId,
       name,
       website,
       description,
