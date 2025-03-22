@@ -13,7 +13,7 @@ app.use(require("morgan")("tiny"));
 // cors integration
 const cors = require("cors");
 
-const allowedOrigins = ["http://localhost:5173", "https://fwc-india.org" , "https://firstworldcommunity.org"];
+const allowedOrigins = ["http://localhost:5173", "https://fwc-india.org" , "https://firstworldcommunity.org","https://www.firstworldcommunity.org"];
 
 app.use(
   cors({
