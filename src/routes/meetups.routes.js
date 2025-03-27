@@ -5,7 +5,7 @@ const { isAdmin } = require("../middlewares/isAdmin");
 let router = express.Router();
 
 // create rout of meetups
-router.route("/all_meetup").post(isAuthenticated, isAdmin, all_meetup);
+router.route("/all_meetup").post(isAuthenticated, all_meetup);
 
 
 // create rout of meetups
