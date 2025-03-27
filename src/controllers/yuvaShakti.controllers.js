@@ -18,7 +18,7 @@ exports.all_yuvaShakti = catchAsyncErrors(async (req, res, next) => {
     let yuvaShakti = await yuvaSchema.find();
     res.status(200).json({
       success: true,
-      message: " all yuvaShakti sent successfully",
+      message: "all yuvaShakti sent successfully",
       yuvaShakti,
     });
   } catch (error) {
