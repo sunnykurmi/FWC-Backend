@@ -18,7 +18,7 @@ exports.all_yuvaShakti = catchAsyncErrors(async (req, res, next) => {
     let yuvaShakti = await yuvaSchema.find();
     res.status(200).json({
       success: true,
-      message: " all yuvaShakti sent successfully",
+      message: "all yuvaShakti sent successfully",
       yuvaShakti,
     });
   } catch (error) {
@@ -30,7 +30,7 @@ exports.all_yuvaShakti = catchAsyncErrors(async (req, res, next) => {
 
 exports.create_yuvaShakti = catchAsyncErrors(async (req, res, next) => {
   try {
-    const { userId, name, education, city, whatsappNumber, description } = req.body;
+    const { userId, name, education, city, whatsappNumber, description, country, socialmedia } = req.body;
 
     if (!userId || !name || !education || !city || !country || !whatsappNumber || !description) {
       return res.status(400).json({
