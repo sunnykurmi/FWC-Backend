@@ -2,7 +2,7 @@ const { catchAsyncErrors } = require("../middlewares/catchAsyncErrors.js");
 const ErrorHandler = require("../utils/ErrorHandler.js");
 const { sendtoken } = require("../utils/sendtoken.js");
 const mongoose = require("mongoose");
-let path = require("path"); 
+let path = require("path");
 let { initImageKit } = require("../utils/imagekit.js");
 
 
@@ -32,7 +32,7 @@ exports.create_yuvaShakti = catchAsyncErrors(async (req, res, next) => {
   try {
     const { userId, name, education, city, whatsappNumber, description } = req.body;
 
-    if (!userId || !name || !education || !city || !whatsappNumber || !description) {
+    if (!userId || !name || !education || !city || !country || !whatsappNumber || !description) {
       return res.status(400).json({
         success: false,
         message: "All required fields must be provided",

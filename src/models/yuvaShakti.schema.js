@@ -9,6 +9,7 @@ const schema = new mongoose.Schema({
     name: { type: String, required: true },
     education: { type: String, required: true },
     city: { type: String, required: true },
+    country: { type: String, required: true },
     socialMedia: { type: String, required: false },
     whatsappNumber: { type: String, required: true },
     description: { type: String, required: true },
