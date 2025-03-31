@@ -101,7 +101,6 @@ exports.create_member = catchAsyncErrors(async (req, res, next) => {
 
     res.json({ success: true, message: "Member created successfully" });
   } catch (error) {
-    console.error("Error creating member:", error);
     res.status(500).json({ message: error.message });
   }
 });
@@ -422,7 +421,7 @@ exports.submit_fwc_athithi_request = catchAsyncErrors(
         purpose,
         food,
         additionalNotes,
-      } = req.body;
+      } = req.body.formData;
 
       // Ensure the user is logged in
       if (!req.user) {
