@@ -74,6 +74,9 @@ app.use("/events", require("./src/routes/events.routes.js"));
 app.use("/investment_circle", require("./src/routes/investmentCircle.routes.js"));
 app.use("/masterClass", require("./src/routes/masterClass.routes.js"));
 app.use("/yuvaShakti", require("./src/routes/yuvaShakti.routes.js"));
+app.use("/spotlightBoost", require("./src/routes/spotlightBoost.routes.js"));
+app.use("/zoomPremium", require("./src/routes/zoomPremium.routes.js"));
+
 
 // Error handling
 const ErrorHandler = require("./src/utils/ErrorHandler.js");
