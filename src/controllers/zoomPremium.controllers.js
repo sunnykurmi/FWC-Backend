@@ -31,7 +31,7 @@ exports.all_zoom = catchAsyncErrors(async (req, res, next) => {
 // Create Zoom Premium
 exports.create_zoom = catchAsyncErrors(async (req, res, next) => {
   try {
-    const { userId, title, type, description, audience } = req.body;
+    const { userId, title, type, description, date ,audience } = req.body;
     const file = req.files?.thumbnail;  // Optional Thumbnail File
     let thumbnail = { fileId: "", url: "" };
 
@@ -51,6 +51,7 @@ exports.create_zoom = catchAsyncErrors(async (req, res, next) => {
       title,
       type,
       description,
+      date,
       audience,
       thumbnail,
     });

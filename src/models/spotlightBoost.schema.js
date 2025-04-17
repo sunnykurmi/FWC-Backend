@@ -9,6 +9,8 @@ const schema = new mongoose.Schema({
   name: { type: String, required: true },
   promote: { type: String, required: true },
   feature: { type: String, required: true },
+  link: { type: String, required: true },
+  showOnHome: { type: Boolean, default: false },
   file: {
     type: Object,
     default: {
