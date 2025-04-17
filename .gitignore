@@ -1,7 +1,7 @@
 # Created by https://www.toptal.com/developers/gitignore/api/node
 # Edit at https://www.toptal.com/developers/gitignore?templates=node
 
-.env
+
 ### Node ###
 # Logs
 logs
@@ -11,6 +11,10 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 .pnpm-debug.log*
+
+# Environment variables
+.env
+.env.*
 
 
 public_html.zip
