@@ -1,0 +1,1201 @@
+[
+    {
+        "name": "Parveen R. Gaur",
+        "phoneNumber": "+91-8512051919",
+        "email": "parveenrgaur@gmail.com",
+        "joinedDate": "2025-03-24T12:16:09.201Z",
+        "whatsAppNumber": "+91-8512051919",
+        "location": "Delhi, India",
+        "type": "Business Owner",
+        "businessDescription": "Business Consultancy",
+        "companyName": "Figurist Industries",
+        "industrySectors": [
+            "Tech",
+            "Education"
+        ],
+        "businessType": [
+            "Service-based ",
+            "B2B",
+            "SaaS"
+        ],
+        "howYouKnowUs": "Invited by Member"
+    },
+    {
+        "name": "Deeksha Aggarwal",
+        "phoneNumber": "+91-9999152723",
+        "email": "aggarwald029@gmail.com",
+        "joinedDate": "2025-03-22T16:09:06.941Z",
+        "whatsAppNumber": "+91-9999152723",
+        "location": "Gurugram, India",
+        "type": "Other",
+        "businessDescription": "We are the one-stop solution for providing assistance and advisory in raising funds.",
+        "companyName": "TrustBridge Growth Partners",
+        "industrySectors": [
+            "Financial Services"
+        ],
+        "businessType": [
+            "B2B"
+        ],
+        "howYouKnowUs": "Network"
+    },
+    {
+        "name": "Rattan Kumar Jain",
+        "phoneNumber": "+91-6280128163",
+        "email": "rattank.jain123@gmail.com",
+        "joinedDate": "2025-03-22T15:56:56.859Z",
+        "whatsAppNumber": "+91-6280128163",
+        "location": "Chandigarh, India",
+        "type": "Business Owner",
+        "businessDescription": "Sustainable Goods Merchant",
+        "companyName": "",
+        "industrySectors": [
+            "Healthcare",
+            "Wellbeing"
+        ],
+        "businessType": [
+            "Product-based"
+        ],
+        "howYouKnowUs": "CK Ashok Sir - Founder, FWC"
+    },
+    {
+        "name": "Sachin Singh",
+        "phoneNumber": "+91-8004123600",
+        "email": "sachinsinghrajkumar@gmail.com",
+        "joinedDate": "2025-03-22T15:22:39.854Z",
+        "whatsAppNumber": "+91-8004123600",
+        "location": "Prayagraj, India",
+        "type": "Startup Founder",
+        "businessDescription": "Swadesh Seva Sansthan is an NGO.",
+        "companyName": "Swadesh Seva Sansthan",
+        "industrySectors": [
+            "Healthcare",
+            "Education"
+        ],
+        "businessType": [
+            "NGO"
+        ],
+        "howYouKnowUs": "CA Ashok Sir"
+    },
+    {
+        "name": "Nishant Bhati",
+        "phoneNumber": "+91-9311105551",
+        "email": "trivimaimmersion@gmail.com",
+        "joinedDate": "2025-03-22T15:03:47.321Z",
+        "whatsAppNumber": "+91-9311105551",
+        "location": "Ghaziabad, India",
+        "type": "Startup Founder",
+        "businessDescription": "IT Services",
+        "companyName": "Trivima Immersion Technology Pvt. Ltd.",
+        "companyWebsite": "https://www.trivimaimmersion.com",
+        "industrySectors": [
+            "Tech"
+        ],
+        "businessType": [
+            "Product & Service"
+        ],
+        "howYouKnowUs": "WhatsApp"
+    },
+    {
+        "name": "Arvind Yadav",
+        "phoneNumber": "+91-9560673851",
+        "email": "jagratatrust@gmail.com",
+        "joinedDate": "2025-03-22T10:29:28.881Z",
+        "whatsAppNumber": "+91-9560673851",
+        "location": "Delhi, India",
+        "type": "Startup Founder",
+        "businessDescription": "Gardening, Food Forest, Eco Home, Agro Tourism",
+        "companyName": "AGRIBOZ",
+        "companyWebsite": "https://www.agriboz.com",
+        "industrySectors": [
+            "Agriculture"
+        ],
+        "businessType": [
+            "Product-based",
+            "Service-based"
+        ],
+        "howYouKnowUs": ""
+    },
+    {
+        "name": "Siddharth Kumar",
+        "phoneNumber": "+91-9560311263",
+        "email": "kumarsiddharth37@gmail.com",
+        "joinedDate": "2025-03-22T07:43:05.220Z",
+        "whatsAppNumber": "+91-9560311263",
+        "location": "New Delhi, India",
+        "type": "Business Owner",
+        "businessDescription": "IT Software Services",
+        "companyName": "Mastertechara",
+        "companyWebsite": "https://www.mastertechara.in",
+        "industrySectors": [
+            "Tech"
+        ],
+        "businessType": [
+            "SaaS"
+        ],
+        "howYouKnowUs": "Ganesh Ji (Friend)"
+    },
+    {
+        "name": "Dr. Ravi Ayyagari",
+        "phoneNumber": "+91-9891048329",
+        "email": "raviayyagari@gmail.com",
+        "joinedDate": "2025-03-22T00:56:54.252Z",
+        "bio": "Additional Director, Electronic Media Production Center, IGNOU, New Delhi.",
+        "whatsAppNumber": "+91-9891048329",
+        "location": "New Delhi, India",
+        "type": "Other",
+        "businessDescription": "Digital content creation, Innovation",
+        "companyName": "Electronic Media Production Centre, IGNOU",
+        "companyWebsite": "https://www.ignou.ac.in",
+        "industrySectors": [
+            "Online Education",
+            "Digital Media"
+        ],
+        "businessType": [
+            "Service"
+        ],
+        "howYouKnowUs": "Social Media"
+    },
+    {
+        "name": "Alka Sachdeva",
+        "phoneNumber": "+91-9818990294",
+        "email": "sachdevaalka6@gmail.com",
+        "joinedDate": "2025-03-21T19:07:34.894Z",
+        "whatsAppNumber": "+91-9818990294",
+        "location": "Delhi, India",
+        "type": "Other",
+        "businessDescription": "Robotics AI & Corporate Relations",
+        "companyName": "IILM University",
+        "industrySectors": [
+            "Robotics",
+            "Artificial Intelligence"
+        ]
+    },
+    {
+        "name": "Deepak Jain",
+        "phoneNumber": "+91-9650361045",
+        "email": "jaindeepak6198@gmail.com",
+        "joinedDate": "2025-03-21T08:03:59.715Z",
+        "whatsAppNumber": "+91-9650361045",
+        "location": "Gurgaon, India",
+        "type": "Other",
+        "businessDescription": "Real Estate",
+        "companyName": "Genesis Infrastructure",
+        "companyWebsite": "https://www.genesisinfra.com",
+        "industrySectors": [
+            "Real Estate"
+        ],
+        "businessType": [
+            "Product B2C"
+        ],
+        "howYouKnowUs": "Friends"
+    },
+    {
+        "name": "Dr. Richa Srivastava",
+        "phoneNumber": "+91-9810612406",
+        "email": "richasri1977@yahoo.com",
+        "joinedDate": "2025-03-20T15:40:19.067Z",
+        "bio": "Educationist, Academic Leader, Building future of Design.",
+        "whatsAppNumber": "+91-9810612406",
+        "location": "New Delhi, India",
+        "type": "Other",
+        "businessDescription": "Education Management",
+        "companyName": "Sri Sukhmani Group of Institutions",
+        "companyWebsite": "https://ssinstituteofdesign.com",
+        "industrySectors": [
+            "Education"
+        ],
+        "businessType": [
+            "Service",
+            "Academics"
+        ],
+        "howYouKnowUs": "Friend"
+    },
+    {
+        "name": "Gagan Singh",
+        "phoneNumber": "+91-8467905330",
+        "email": "gagan1019@gmail.com",
+        "joinedDate": "2025-03-20T14:39:55.061Z",
+        "whatsAppNumber": "+91-8467905330",
+        "location": "Delhi, India",
+        "type": "Other",
+        "businessDescription": "Agro as a Service Platform - Agriboz",
+        "companyName": "Agriboz",
+        "companyWebsite": "https://www.agriboz.com",
+        "industrySectors": [
+            "Agriculture"
+        ],
+        "businessType": [
+            "Service",
+            "Product"
+        ],
+        "howYouKnowUs": "Reference"
+    },
+    {
+        "name": "Ankit Kumar",
+        "phoneNumber": "+91-7503947001",
+        "email": "ankit@regoservices.com",
+        "joinedDate": "2025-03-20T14:37:15.643Z",
+        "whatsAppNumber": "+91-7503947001",
+        "location": "Delhi, India",
+        "type": "Startup Founder",
+        "businessDescription": "Agroforestry"
+    },
+    {
+        "name": "Vinod Kumar Chauhan",
+        "phoneNumber": "+91-9810486112",
+        "email": "vinodkc@amity.edu",
+        "joinedDate": "2025-03-20T13:32:57.732Z",
+        "whatsAppNumber": "+91-9810486112",
+        "location": "Noida, India",
+        "type": "Other",
+        "businessDescription": "Higher Education Institution",
+        "companyName": "Amity University",
+        "companyWebsite": "https://www.amity.edu"
+    },
+    {
+        "name": "Vignesh S P",
+        "phoneNumber": "+91-7012078039",
+        "email": "vigneshsp369@gmail.com",
+        "joinedDate": "2025-03-19T10:42:02.544Z",
+        "bio": "Master’s student from Delhi working for a sustainable future.",
+        "whatsAppNumber": "+91-7012078039",
+        "location": "Vasant Kunj, Delhi, India",
+        "type": "Other",
+        "businessDescription": "Research Institute",
+        "companyName": "TERI School of Advanced Studies - MTech REEM",
+        "companyWebsite": "https://www.terisas.ac.in/",
+        "industrySectors": [
+            "Tech",
+            "Sustainability"
+        ],
+        "businessType": [
+            "Education"
+        ],
+        "howYouKnowUs": "Social Media"
+    },
+    {
+        "name": "Nikhil",
+        "phoneNumber": "+91-7678461137",
+        "email": "nikhilmalgat2005@gmail.com",
+        "joinedDate": "2025-03-19T06:52:55.698Z",
+        "whatsAppNumber": "+91-7678461137",
+        "location": "New Delhi, India",
+        "type": "Other",
+        "businessDescription": "Student",
+        "industrySectors": [
+            "Education"
+        ],
+        "businessType": [
+            "B2B"
+        ],
+        "howYouKnowUs": "Krishna MIT",
+        "socialMediaLink": "https://www.linkedin.com/in/nikhil-malgat-74a196311"
+    },
+    {
+        "name": "Ruchi Bansal",
+        "phoneNumber": "+91-9810319208",
+        "email": "mnaz80156@gmail.com",
+        "joinedDate": "2025-03-19T05:47:01.686Z",
+        "bio": "Love yourself the way you want others to love you 💞",
+        "whatsAppNumber": "+91-9810319208",
+        "location": "Noida, India",
+        "type": "Business Owner",
+        "businessDescription": "Tarot reader, counsellor, healer",
+        "companyName": "Cosmic Abundance",
+        "industrySectors": [
+            "Mental Health",
+            "Wellness"
+        ],
+        "businessType": [
+            "B2B"
+        ],
+        "howYouKnowUs": "Through a friend",
+        "socialMediaLink": "https://www.instagram.com/pyschichealer159"
+    },
+    {
+        "name": "Rahul Singh",
+        "phoneNumber": "+91-9910127270",
+        "email": "gmnorth@naturals.in",
+        "joinedDate": "2025-03-18T14:28:02.806Z",
+        "bio": "Honest and trustworthy",
+        "whatsAppNumber": "+91-9910127270",
+        "location": "Noida, India",
+        "type": "Other",
+        "businessDescription": "Beauty",
+        "companyName": "Naturals",
+        "companyWebsite": "https://www.naturals.in",
+        "industrySectors": [
+            "Beauty"
+        ],
+        "businessType": [
+            "Service-based"
+        ],
+        "howYouKnowUs": "Reference",
+        "socialMediaLink": "https://www.naturals.in"
+    },
+    {
+        "name": "Tanishq Bhawar",
+        "phoneNumber": "+91-9773775610",
+        "email": "tanishqbhawar07@gmail.com",
+        "joinedDate": "2025-03-18T02:48:36.514Z",
+        "bio": "Student",
+        "whatsAppNumber": "+91-9773775610",
+        "location": "New Delhi, India",
+        "type": "Other",
+        "businessDescription": "Student",
+        "companyName": "DSEU",
+        "companyWebsite": "https://dseu.ac.in",
+        "industrySectors": [
+            "Tech",
+            "Education"
+        ],
+        "businessType": [
+            "NA"
+        ],
+        "howYouKnowUs": "YouTube",
+        "socialMediaLink": "https://www.linkedin.com/in/tanishqbhawar"
+    },
+    {
+        "name": "Samrat Shukla",
+        "phoneNumber": "+91-6387664389",
+        "email": "samratshukla360@gmail.com",
+        "joinedDate": "2025-03-17T09:15:49.600Z",
+        "whatsAppNumber": "+91-6387664389",
+        "location": "Kanpur, India",
+        "type": "Business Owner",
+        "businessDescription": "Student and Cafe Chain Owner",
+        "companyName": "ColdCup Café",
+        "industrySectors": [
+            "Hospitality"
+        ],
+        "businessType": [
+            "B2C"
+        ],
+        "howYouKnowUs": "College Senior",
+        "socialMediaLink": "https://www.instagram.com/samratshukla_"
+    },
+    {
+        "name": "ABHYUDAYA DIXIT",
+        "phoneNumber": "+91-8957197552",
+        "email": "dixitabhyudaya24@gmail.com",
+        "joinedDate": "2025-03-17T09:08:14.446Z",
+        "whatsAppNumber": "+91-8957197552",
+        "location": "Kanpur Nagar, India",
+        "type": "Diplomate",
+        "socialMediaLink": "https://www.instagram.com/_abhyudaya_dixit"
+    },
+    {
+        "name": "Kashish Jain",
+        "phoneNumber": "+91-9810555619",
+        "email": "kashishmittal12@gmail.com",
+        "joinedDate": "2025-03-17T09:03:31.918Z",
+        "whatsAppNumber": "+91-9810555619",
+        "location": "Ghaziabad, India",
+        "type": "Startup Founder",
+        "businessDescription": "Training and Placement Institute",
+        "companyName": "Vittkushal Training and Placement Pvt Ltd",
+        "companyWebsite": "https://www.vittkushal.com",
+        "industrySectors": [
+            "Education",
+            "Placement"
+        ],
+        "businessType": [
+            "B2C",
+            "B2B"
+        ],
+        "howYouKnowUs": "Friend",
+        "socialMediaLink": "https://www.vittkushal.com"
+    },
+    {
+        "name": "Seram Tombi Meitei",
+        "phoneNumber": "+91-9612548521",
+        "email": "tombi4u@gmail.com",
+        "joinedDate": "2025-03-17T03:58:59.483Z",
+        "whatsAppNumber": "+91-9612548521",
+        "location": "New Delhi, India",
+        "type": "Startup Founder",
+        "businessDescription": "Proprietor",
+        "companyName": "Ecocare Farm",
+        "industrySectors": [
+            "Agriculture"
+        ],
+        "businessType": [
+            "Product"
+        ],
+        "socialMediaLink": "https://www.facebook.com/tombi.seram",
+        "identityNumber": "910101383072"
+    },
+    {
+        "name": "Kuppusamy Ilayaraja",
+        "phoneNumber": "+91-9789067232",
+        "email": "aayarpadi2020@gmail.com",
+        "joinedDate": "2025-03-17T02:35:01.467Z",
+        "whatsAppNumber": "+91-9789067232",
+        "location": "Tiruvannamalai, India",
+        "type": "Business Owner",
+        "businessDescription": "Agricultural Marketing",
+        "companyName": "Uyeir Unavu Private Limited",
+        "industrySectors": [
+            "Agriculture"
+        ],
+        "businessType": [
+            "B2B",
+            "B2C"
+        ],
+        "socialMediaLink": "https://www.facebook.com/share/18PNVrnSpW/",
+        "identityNumber": "ACRPI4579B"
+    },
+    {
+        "name": "Ram Maruri",
+        "phoneNumber": "+91-9618302597",
+        "email": "ramalinga.reddy@yahoo.com",
+        "joinedDate": "2025-03-16T13:14:08.881Z",
+        "whatsAppNumber": "+91-9618302597",
+        "location": "Hyderabad, India",
+        "type": "Startup Founder",
+        "businessDescription": "Value Train Services (VTS) Promote Entrepreneurship Skills",
+        "companyName": "Value Train Services (VTS)",
+        "companyWebsite": "https://valutrain.com",
+        "industrySectors": [
+            "All sectors"
+        ],
+        "businessType": [
+            "All"
+        ],
+        "socialMediaLink": "https://www.linkedin.com/in/ram-maruri-a4568637",
+        "identityNumber": "None"
+    },
+    {
+        "name": "Jatinder Kumar",
+        "phoneNumber": "+91-8054125616",
+        "email": "jatinder.kumar@gurudrones.com",
+        "joinedDate": "2025-03-16T10:19:27.969Z",
+        "whatsAppNumber": "+91-8054125616",
+        "location": "Kurukshetra, India",
+        "type": "Startup Founder",
+        "businessDescription": "Agriculture Drone",
+        "companyName": "Gurudrone Agritech Private Limited",
+        "companyWebsite": "https://www.gurudrones.com",
+        "industrySectors": [
+            "Agriculture"
+        ],
+        "businessType": [
+            "Service-based"
+        ],
+        "socialMediaLink": "https://m.facebook.com/profile.php?id=61562883121356&name=xhp_nt__fb__action__open_user",
+        "identityNumber": "Aadhar"
+    },
+    {
+        "name": "Vignesh Shrivastava",
+        "phoneNumber": "+91-6262089871",
+        "email": "vigneshshrivastava094@gmail.com",
+        "joinedDate": "2025-03-15T06:36:54.620Z",
+        "bio": "Let’s connect!",
+        "whatsAppNumber": "+91-6262089871",
+        "location": "Bhopal, India",
+        "type": "Other",
+        "industrySectors": [
+            "Biotechnology"
+        ],
+        "socialMediaLink": "https://linkedin.com/in/vignesh-shrivastava-325011262"
+    },
+    {
+        "name": "Hariharan Sanjay S",
+        "phoneNumber": "+91-9750526426",
+        "email": "hariharansanjay.7@gmail.com",
+        "joinedDate": "2025-03-13T15:04:46.033Z",
+        "bio": ".",
+        "whatsAppNumber": "+91-9750526426",
+        "location": "Salem, India",
+        "type": "Other",
+        "businessDescription": "Na",
+        "companyName": "Na",
+        "industrySectors": [
+            "Student"
+        ],
+        "businessType": "Na",
+        "socialMediaLink": "https://www.linkedin.com/in/hariharansanjay?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+        "identityNumber": "2400206MBS"
+    },
+    {
+        "name": "Harshit Gautam Official",
+        "phoneNumber": "+91-9411323055",
+        "email": "gautamharshitofficial@gmail.com",
+        "joinedDate": "2025-03-13T14:09:09.867Z",
+        "bio": "I am GOOD",
+        "whatsAppNumber": "+91-9411323055",
+        "location": "Haldwani, India",
+        "type": "Other",
+        "businessDescription": "Cross The Skylimits is a dynamic profile-building firm committed to revolutionizing the college application journey for ambitious international students...",
+        "companyName": "Cross The Skylimits",
+        "companyWebsite": "https://crosstheskylimits.org/",
+        "industrySectors": [
+            "Tech",
+            " Education"
+        ],
+        "businessType": [
+            "Service-based"
+        ],
+        "socialMediaLink": "https://www.linkedin.com/in/harshit-gautam-9b8730270/"
+    },
+    {
+        "name": "AMRUTHA RS",
+        "phoneNumber": "+91-9074685476",
+        "email": "amruthars05@gmail.com",
+        "joinedDate": "2025-03-13T01:52:28.462Z",
+        "whatsAppNumber": "+91-9074685476",
+        "location": "New Delhi, India",
+        "type": "Other",
+        "industrySectors": [
+            "Public policy"
+        ],
+        "socialMediaLink": "https://www.linkedin.com/in/amrutha-rs-ba0938101?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+    },
+    {
+        "name": "Ubhanisha Senthil Kumar",
+        "phoneNumber": "+91-7708744305",
+        "email": "ubhanisha.gsn@gmail.com",
+        "joinedDate": "2025-03-13T01:40:11.310Z",
+        "whatsAppNumber": "+91-7708744305",
+        "location": "Delhi, India",
+        "type": "Other",
+        "industrySectors": [
+            "Education"
+        ],
+        "socialMediaLink": "https://www.linkedin.com/in/ubhanisha-senthilkumar-99106a250?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+        "identityNumber": "2400044MSE"
+    },
+    {
+        "name": "Arti Verma",
+        "phoneNumber": "+91-9455070226",
+        "email": "innovativemodernengineers@gmail.com",
+        "joinedDate": "2025-03-11T09:27:59.801Z",
+        "whatsAppNumber": "+91-9455070226",
+        "location": "Lucknow, India",
+        "type": "Startup Founder",
+        "businessDescription": "Travel and Transport",
+        "companyName": "Innovative Modern Engineers",
+        "companyWebsite": "https://hurryupcabs.com",
+        "industrySectors": [
+            "Travel and Transport"
+        ],
+        "businessType": [
+            "Service-based"
+        ],
+        "socialMediaLink": "https://in.linkedin.com/company/hurryup-cabs",
+        "identityNumber": "BDQPV3346G"
+    },
+    {
+        "name": "Naveen Verma",
+        "phoneNumber": "+91-8169550255",
+        "email": "info@smartcitiesinvestment.com",
+        "joinedDate": "2025-03-11T09:14:29.960Z",
+        "whatsAppNumber": "+91-8169550255",
+        "location": "Ghaziabad, India",
+        "type": "Business Owner",
+        "industrySectors": [
+            "Real Estate"
+        ],
+        "socialMediaLink": "https://www.linkedin.com/in/naveentheguru/"
+    },
+    {
+        "name": "Aryan Teena Gajmore",
+        "phoneNumber": "+91-9993005667",
+        "email": "aryangajmore05@gmail.com",
+        "joinedDate": "2025-03-11T08:38:29.210Z",
+        "whatsAppNumber": "+91-9993005667",
+        "location": "Bhopal, India",
+        "type": "Startup Founder",
+        "businessDescription": "Biomass pellets",
+        "companyName": "Biofuse",
+        "industrySectors": [
+            "Agriculture"
+        ],
+        "businessType": [
+            "Product based"
+        ],
+        "howYouKnowUs": "Invited by Member"
+    },
+    {
+        "name": "SACHIN AGGARWAL",
+        "phoneNumber": "+91-9467184400",
+        "email": "sachinzerpuria@gmail.com",
+        "joinedDate": "2025-03-10T06:19:08.785Z",
+        "whatsAppNumber": "+91-9467184400",
+        "location": "Mahendragarh, Haryana, India",
+        "type": "Startup Founder",
+        "businessDescription": "We are developing our mobile application PashuDhanQR which generates unique QR code for each livestock, and by scanning it in our app, we get the details of respective livestock.",
+        "companyName": "Herdsman Development Private Limited & PashuDhanQR",
+        "industrySectors": [
+            "Animal Husbandry"
+        ],
+        "businessType": [
+            "B2B",
+            "B2C",
+            "B2G"
+        ],
+        "howYouKnowUs": "Invited by Member"
+    },
+    {
+        "name": "Pallavi Saxena",
+        "phoneNumber": "+91-7011486776",
+        "email": "saxenapallavi249@gmail.com",
+        "joinedDate": "2025-03-08T16:14:35.792Z",
+        "whatsAppNumber": "+91-7011486776",
+        "location": "Noida, India",
+        "type": "Other",
+        "businessDescription": "Agriculture",
+        "companyName": "",
+        "industrySectors": [
+            "Agriculture"
+        ],
+        "businessType": [],
+        "howYouKnowUs": "Invited by Member"
+    },
+    {
+        "name": "Ankit Srivastava",
+        "phoneNumber": "+91-9899346183",
+        "email": "ankitsrpromo@gmail.com",
+        "joinedDate": "2025-03-08T16:04:59.105Z",
+        "whatsAppNumber": "+91-9899346183",
+        "location": "Noida, India",
+        "type": "Startup Founder",
+        "businessDescription": "AI",
+        "companyName": "",
+        "industrySectors": [
+            "Tech"
+        ],
+        "businessType": [],
+        "howYouKnowUs": "Invited by Member"
+    },
+    {
+        "name": "Ambika Prasad Dubey",
+        "phoneNumber": "+91-8586936464",
+        "email": "ambika.dubey13@gmail.com",
+        "joinedDate": "2025-03-08T05:48:25.536Z",
+        "whatsAppNumber": "+91-8586936464",
+        "location": "Bhopal, India",
+        "type": "Other",
+        "businessDescription": "Gaushala",
+        "companyName": "Aarnavi Seva Sansthan",
+        "industrySectors": [
+            "Agriculture"
+        ],
+        "businessType": [
+            "Product based"
+        ],
+        "howYouKnowUs": "Invited by Member"
+    },
+    {
+        "name": "Jaskirat",
+        "phoneNumber": "+91-8448609344",
+        "email": "jaskiratnarula655@gmail.com",
+        "joinedDate": "2025-03-06T18:38:24.510Z",
+        "whatsAppNumber": "+91-8448609344",
+        "location": "Delhi, India",
+        "type": "Other",
+        "businessDescription": "E-commerce",
+        "companyName": "Shield International Group",
+        "industrySectors": [
+            "E-commerce"
+        ],
+        "businessType": [],
+        "howYouKnowUs": "Invited by Member"
+    },
+    {
+        "name": "Shruti",
+        "phoneNumber": "+91-7974284231",
+        "email": "shruti.aryantv@gmail.com",
+        "joinedDate": "2025-03-06T11:19:11.198Z",
+        "whatsAppNumber": "+91-7974284231",
+        "location": "Noida, India",
+        "type": "Other",
+        "businessDescription": "I am a media person",
+        "companyName": "Aryan TV (Sadhna TV), Noida",
+        "industrySectors": [
+            "Media"
+        ],
+        "businessType": [],
+        "howYouKnowUs": "Invited by Member"
+    },
+    {
+        "name": "Jitender Jemini",
+        "phoneNumber": "+91-9999066688",
+        "email": "jitender_gemini@yahoo.com",
+        "joinedDate": "2025-03-05T15:40:27.344Z",
+        "whatsAppNumber": "+91-9999066688",
+        "location": "Delhi, India",
+        "type": "Other",
+        "businessDescription": "Banking",
+        "companyName": "",
+        "industrySectors": [
+            "Banking"
+        ],
+        "businessType": [],
+        "howYouKnowUs": "Invited by Member"
+    },
+    {
+        "name": "Varaang Ghai",
+        "phoneNumber": "+91-9810440715",
+        "email": "varaang@gmail.com",
+        "joinedDate": "2025-03-05T14:54:35.885Z",
+        "whatsAppNumber": "+91-9810440715",
+        "location": "New Delhi, India",
+        "type": "Business Owner",
+        "businessDescription": "Consulting - Global Capability Center",
+        "companyName": "",
+        "industrySectors": [
+            "Human Resource"
+        ],
+        "businessType": [
+            "B2B SaaS"
+        ],
+        "howYouKnowUs": "Invited by Member"
+    },
+    {
+        "name": "Sweta Verma",
+        "phoneNumber": "+91-9999642029",
+        "email": "swetaverma2029@gmail.com",
+        "joinedDate": "2025-03-05T13:04:35.843Z",
+        "whatsAppNumber": "+91-9999642029",
+        "location": "New Delhi, India",
+        "type": "Business Owner",
+        "businessDescription": "Image Consultant to create first impressions as per role, goal & message you want to project",
+        "companyName": "Image Unlocks",
+        "companyWebsite": "https://www.imageunlocks.com",
+        "industrySectors": [
+            "Consulting"
+        ],
+        "businessType": [
+            "Service-based"
+        ],
+        "socialMediaLink": "https://www.instagram.com/swetaimagecoach?igsh=MTB6Zm43cWNqYzhwZg%3D%3D&utm_source=qr"
+    },
+    {
+        "name": "Nitin Lalit",
+        "phoneNumber": "+91-7015437037",
+        "email": "nitinlalit@outlook.com",
+        "joinedDate": "2025-03-05T13:01:36.369Z",
+        "whatsAppNumber": "+91-7015437037",
+        "location": "Karnal, India",
+        "type": "Startup Founder",
+        "companyName": "Alpha Advantech LLP",
+        "companyWebsite": "https://www.alphaplanters.com",
+        "industrySectors": [
+            "Agriculture"
+        ],
+        "businessType": [
+            "B2B",
+            "D2C"
+        ],
+        "socialMediaLink": "https://youtube.com/@alphaplanters?si=wG095MUHnrA7Ligq"
+    },
+    {
+        "name": "Aakanksha Shankar",
+        "phoneNumber": "+91-7404611163",
+        "email": "aakanksha.shankar@gmail.com",
+        "joinedDate": "2025-03-05T13:01:02.928Z",
+        "whatsAppNumber": "+91-7404611163",
+        "location": "Gurgaon, India",
+        "type": "Business Owner",
+        "businessDescription": "Home decor",
+        "companyName": "BULBULIHANDCRAFTED India",
+        "companyWebsite": "https://www.bulbuliindia.com",
+        "industrySectors": [
+            "Service-based"
+        ],
+        "businessType": [
+            "Products based services"
+        ],
+        "socialMediaLink": "https://www.instagram.com/bulbuliindia?igsh=MTJhdmhibjZ5YnhqNA%3D%3D&utm_source=qr"
+    },
+    {
+        "name": "Nidhi Tyagi",
+        "phoneNumber": "+91-7838997777",
+        "email": "nid.tyg04@gmail.com",
+        "joinedDate": "2025-03-05T12:57:21.103Z",
+        "whatsAppNumber": "+91-7838997777",
+        "location": "Gr Noida, India",
+        "type": "Business Owner",
+        "businessDescription": "Branding and Marketing Consultant",
+        "companyName": "IBrand Consulting",
+        "companyWebsite": "https://www.ibrandconsulting.in",
+        "industrySectors": [
+            "Consulting"
+        ],
+        "businessType": [
+            "Service-based",
+            "B2C"
+        ],
+        "socialMediaLink": "https://www.facebook.com/nidtyg"
+    },
+    {
+        "name": "Bhupendra Singh",
+        "phoneNumber": "+91-8587895210",
+        "email": "mail2badlaavfoundation@gmail.com",
+        "joinedDate": "2025-03-05T12:43:42.676Z",
+        "whatsAppNumber": "+91-8587895210",
+        "location": "New Delhi, India",
+        "type": "Startup Founder",
+        "businessDescription": "Badlaav Foundation",
+        "companyName": "Badlaav Foundation",
+        "companyWebsite": "https://www.Badlaavfoundation.org",
+        "industrySectors": [
+            "Agriculture",
+            "Social Development"
+        ],
+        "businessType": [
+            "Services"
+        ],
+        "socialMediaLink": "https://www.linkedin.com/in/bhupendra-singh-24186717?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+    },
+    {
+        "name": "Anupam Tiwari",
+        "phoneNumber": "+91-9792360731",
+        "email": "apriyam2005@gmail.com",
+        "joinedDate": "2025-03-05T11:44:35.382Z",
+        "whatsAppNumber": "+91-9792360731",
+        "location": "Bhopal, India",
+        "type": "Startup Founder",
+        "businessDescription": "Eco-friendly advertisement",
+        "companyName": "EcoAd",
+        "industrySectors": [
+            "Advertisement"
+        ],
+        "businessType": [
+            "B2B"
+        ],
+        "socialMediaLink": "https://www.linkedin.com/in/anupam-kumar-tiwari-30158b20b"
+    },
+    {
+        "name": "Shubham Ghoshi",
+        "phoneNumber": "+91-9165121909",
+        "email": "shubhamthakur9165@gmail.com",
+        "bio": "Working on new ideas and giving employment",
+        "whatsAppNumber": "+91-9165121909",
+        "location": "Bhopal, India",
+        "type": "Business Owner",
+        "businessDescription": "Electronic Import Export",
+        "companyName": "Kamal Radio House",
+        "industrySectors": [
+            "Electric Products"
+        ],
+        "businessType": [
+            "B2B"
+        ]
+    },
+    {
+        "name": "Sandeep Ghoshi",
+        "phoneNumber": "+91-9977702885",
+        "email": "sandeepthakur99777@gmail.com",
+        "bio": "Godrej products",
+        "whatsAppNumber": "+91-9977702885",
+        "location": "Bhopal, India",
+        "type": "Distributor/Service",
+        "businessDescription": "Selling and manufacturing"
+    },
+    {
+        "name": "Nitin Srivastava",
+        "phoneNumber": "+33-7-52-67-64-44",
+        "email": "nitinsr@icloud.com",
+        "whatsAppNumber": "+33-7-52-67-64-44",
+        "location": "France",
+        "type": "IT Sector"
+    },
+    {
+        "name": "Amit Mathur",
+        "phoneNumber": "+1 (407) 429-5014",
+        "email": "mathur@worldtradeinvestment.net",
+        "whatsAppNumber": "+1 (407) 429-5014",
+        "location": "USA",
+        "type": "Business"
+    },
+    {
+        "name": "Natarajan Kandaswamy",
+        "phoneNumber": "+91-9810027737",
+        "email": "ceo.swameera@gmail.com",
+        "whatsAppNumber": "+91-9810027737",
+        "location": "Delhi, India",
+        "type": "Education Business"
+    },
+    {
+        "name": "Dr. Neena Gayatri Ramakrishnan",
+        "phoneNumber": "+91-8939951230",
+        "email": "coo@acenovation.com",
+        "joinedDate": "Jan 2025",
+        "whatsAppNumber": "+91-8939951230",
+        "location": "Singapore",
+        "type": "Doctor"
+    },
+    {
+        "name": "Edward Charles Antony",
+        "phoneNumber": "+91-9049007079",
+        "email": "goa@goldenlineexim.com",
+        "joinedDate": "Jan 2025",
+        "whatsAppNumber": "+91-9049007079",
+        "location": "Goa, India",
+        "type": "Business"
+    },
+    {
+        "name": "Vittal Laxmi R",
+        "phoneNumber": "+91-8122307",
+        "email": "vittal.10x@gmail.com",
+        "whatsAppNumber": "+91-8122307",
+        "location": "Malaysia",
+        "type": "Education"
+    },
+    {
+        "name": "Nilamegame",
+        "phoneNumber": "+91-9113219286, +262-692-870375",
+        "email": "omswa29@yahoo.com",
+        "joinedDate": "Jan 2025",
+        "whatsAppNumber": "+91-9113219286, +262-692-870375",
+        "location": "Reunion Islands",
+        "type": "Yoga Teacher"
+    },
+    {
+        "name": "Dr. Mohammed Saleem",
+        "phoneNumber": "+971-585977487, +971-521039555, +91-44-46888786, +91-9043355555",
+        "email": "saleem@glomont.ae, hello@glomont.ae",
+        "location": "314, 3rd Flr-Abdulla Belhabb Building Damascus Street - AI Qusais - Dubai",
+        "businessDescription": "Helping in abroad, visa study, visit, travel work",
+        "companyName": "GloMont Nextgen",
+        "companyWebsite": "www.glomont.in"
+    },
+    {
+        "name": "Dr. Mohammed Saleem (Secretary General)",
+        "email": "mohd@fedaglobal.org",
+        "location": "Regd. Office: FL No.24 (1B), First Floor, Connaught Place, 4th Block, New Delhi-110001, INDIA.",
+        "companyName": "FEDA Global Sources",
+        "companyWebsite": "www.fedaglobal.org"
+    },
+    {
+        "name": "V. Gayathri (Director)",
+        "phoneNumber": "+91-9840963567",
+        "email": "gayathri@celeztialholidays.com",
+        "location": "4B, 203, 2nd Floor, Hameedia Shopping Mall, Triplicane, Chennai - 600 005.",
+        "businessDescription": "★B2B Tourism\n★ Freelancer Visa\nTravel Visa\nStudy Abroad\n★ Immigration Services",
+        "companyName": "VGI QUANTUM INDIA",
+        "companyWebsite": "www.celeztialholidays.com"
+    },
+    {
+        "name": "Boom",
+        "phoneNumber": "+91-9176772666",
+        "email": "contact@boomshop.io",
+        "location": "Plot No 3978, 6th Ave, S Block, Anna Nagar, Chennai, Tamil Nadu 600040",
+        "businessDescription": "Social media platform to sell local products of village women",
+        "companyName": "Boom",
+        "companyWebsite": "www.boomshop.io"
+    },
+    {
+        "name": "Abhishek MB (Solutions Consultant)",
+        "phoneNumber": "+91-9003084992",
+        "email": "abhishek@siamcomputing.com",
+        "location": "No 30, 1st Main Road, 2nd Floor, Shastri Nagar, Adyar, Chennai - 600020",
+        "businessDescription": "Technology partner for startups. Product Strategy & Engineering, AI Experts\nWe don't sell code. We deliver clarity.\n12 years | 150+ products",
+        "companyName": "siam computing"
+    },
+    {
+        "name": "Ar. Roshiny Jagan (Founder & Finance Head) & SHOBAN.S (Manager)",
+        "phoneNumber": "+91-8925944402, +91-9789975712",
+        "email": "helpdesk@spazedo.com",
+        "companyName": "SPAZEDO INTERIOR DESIGN SOLUTIONS",
+        "companyWebsite": "www.spazedo.com"
+    },
+    {
+        "name": "Imran Diauddin Syed (Managing Director)",
+        "phoneNumber": "+91-9566195164",
+        "email": "cascadeinfluencers2017@gmail.com",
+        "location": "16/30 1st Street Thiruvalluvar Nagar, Kottur Chennai - 600 085",
+        "companyName": "CASCADE INFLUENCERS LLP",
+        "companyWebsite": "www.cascadeinfluencers.com"
+    },
+    {
+        "name": "Jovita Prince (Sr. Travel Consultant)",
+        "phoneNumber": "+91-7200669293",
+        "email": "Jovita@goed.in",
+        "location": "Prince Tower, NO: 25/26 1st & 9th Floor, College Road, Nungambakkam, Chennai 600006",
+        "businessDescription": "OUR SERVICES\nFlight Tickets\nCorporate Travel\nVisa Services\nGroup Tours\n✔Holiday Package\nHotel Booking\nCruise\nForeign Exchange\nThe Complete Travel Co.",
+        "companyName": "GOED TRAVELS AND FOREX PVT LTD",
+        "companyWebsite": "www.goedtravels.in"
+    },
+    {
+        "name": "MD ARSHAD FAROOK (CEO)",
+        "phoneNumber": "+91-8122761207",
+        "email": "ceo@cogniventor.com",
+        "location": "122 C2, Beach Road, Near Hindu College, Nagercoil, Kanyakumari District, Pin:629002, Tamilnadu.",
+        "companyName": "COGNIVENTOR PVT LTD",
+        "companyWebsite": "www.cogniventor.com"
+    },
+    {
+        "name": "Vineet Miranda",
+        "phoneNumber": "+91-91-7676-0013",
+        "email": "avm@tringlabs.ai",
+        "joinedDate": "2025-04-27T00:00:00.000Z",
+        "whatsAppNumber": "+91-91-7676-0013",
+        "location": "India",
+        "type": "COO",
+        "businessDescription": "Empower Every Conversation AI Chatbot AI Voicebot",
+        "companyName": "Tring AI",
+        "companyWebsite": "https://www.tringlabs.ai",
+        "industrySectors": [
+            "AI",
+            "Tech"
+        ],
+        "businessType": [
+            "Services"
+        ]
+    },
+    {
+        "name": "Shankar Shanmugam",
+        "phoneNumber": "+91-89259-27076",
+        "email": "shankar@sbshr.com",
+        "joinedDate": "2025-04-27T00:00:00.000Z",
+        "whatsAppNumber": "+91-89259-27076",
+        "location": "Chennai, India",
+        "type": "Senior Business Development Manager",
+        "businessDescription": "Providing HR services connecting with clients and filling needs",
+        "companyName": "SBSHR",
+        "companyWebsite": "https://www.sbshr.com",
+        "industrySectors": [
+            "HR",
+            "Consulting"
+        ],
+        "businessType": [
+            "Services"
+        ]
+    },
+    {
+        "name": "Ramkumar.M",
+        "phoneNumber": "+91-7200666599",
+        "email": "talktotrip99@gmail.com",
+        "joinedDate": "2025-04-27T00:00:00.000Z",
+        "whatsAppNumber": "+91-7200666599",
+        "location": "Chennai, India",
+        "type": "Business Owner",
+        "businessDescription": "Tours & Travels",
+        "companyName": "TRIP99 Tours & Travels",
+        "companyWebsite": "https://www.trip99.in",
+        "industrySectors": [
+            "Travel",
+            "Tourism"
+        ],
+        "businessType": [
+            "Services"
+        ]
+    },
+    {
+        "name": "Neha Jain",
+        "phoneNumber": "+91-44-6654-8100",
+        "email": "neha.jain5@in.ey.com",
+        "joinedDate": "2025-04-27T00:00:00.000Z",
+        "whatsAppNumber": "+91-44-6654-8100",
+        "location": "Chennai, India",
+        "type": "Manager",
+        "businessDescription": "Ernst & Young LLP",
+        "companyName": "Ernst & Young LLP",
+        "companyWebsite": "https://ey.com/en_in",
+        "industrySectors": [
+            "Consulting",
+            "Professional Services"
+        ],
+        "businessType": [
+            "Services"
+        ]
+    },
+    {
+        "name": "MEENAA RAMANATHAN",
+        "phoneNumber": "+91-8072-500-992",
+        "email": "info@diamondio.store",
+        "joinedDate": "2025-04-27T00:00:00.000Z",
+        "whatsAppNumber": "+91-8072-500-992",
+        "location": "Chennai, India",
+        "type": "Co-Founder & CEO",
+        "businessDescription": "Diamondio",
+        "companyName": "Diamondio",
+        "companyWebsite": "https://www.diamondio.store",
+        "industrySectors": [
+            "Retail",
+            "Jewelry"
+        ],
+        "businessType": [
+            "E-Commerce"
+        ]
+    },
+    {
+        "name": "ARCHIT SAKRI",
+        "phoneNumber": "+91-96866-16796",
+        "email": "SAKRIARCHIT@GMAIL.COM",
+        "joinedDate": "2025-04-27T00:00:00.000Z",
+        "whatsAppNumber": "+91-96866-16796",
+        "location": "India",
+        "type": "CEO, Co-Founder",
+        "businessDescription": "OnPoint Innovation Co.",
+        "companyName": "OnPoint Innovation Co.",
+        "companyWebsite": "https://www.onpointinnovation.com",
+        "industrySectors": [
+            "Innovation",
+            "Tech"
+        ],
+        "businessType": [
+            "Consulting"
+        ]
+    },
+    {
+        "name": "Selvakumar Pitchiah",
+        "phoneNumber": "+91-9840567780",
+        "email": "skp@stamin.in",
+        "joinedDate": "2025-04-27T00:00:00.000Z",
+        "whatsAppNumber": "+91-9840567780",
+        "location": "Chennai, India",
+        "type": "Founder & CEO",
+        "businessDescription": "Velvom Global Pvt Ltd.",
+        "companyName": "Velvom Global Pvt Ltd.",
+        "companyWebsite": "https://relookingindia.com",
+        "industrySectors": [
+            "Tech",
+            "Consulting"
+        ],
+        "businessType": [
+            "Services"
+        ]
+    },
+    {
+        "name": "AKILAN RAVI",
+        "phoneNumber": "+91-7200271300",
+        "email": "contact.crchemtech@gmail.com",
+        "joinedDate": "2025-04-27T00:00:00.000Z",
+        "whatsAppNumber": "+91-7200271300",
+        "location": "Chennai, India",
+        "type": "Co-Founder | Architect",
+        "businessDescription": "Waterproofing business in Chennai",
+        "companyName": "CRC Water Proofing",
+        "companyWebsite": "https://www.crchemtech.com",
+        "industrySectors": [
+            "Construction",
+            "Waterproofing"
+        ],
+        "businessType": [
+            "Services"
+        ]
+    },
+    {
+        "name": "ASHOKAN T",
+        "phoneNumber": "+91-7550204976",
+        "email": "quitemindscenter@gmail.com",
+        "joinedDate": "2025-04-27T00:00:00.000Z",
+        "whatsAppNumber": "+91-7550204976",
+        "location": "Chennai, India",
+        "type": "Psychologist",
+        "businessDescription": "Start his own psychology clinic Centre",
+        "companyName": "Quite Minds",
+        "companyWebsite": "https://quitemindscounselling.com",
+        "industrySectors": [
+            "Health",
+            "Mental Health"
+        ],
+        "businessType": [
+            "Services"
+        ]
+    }
+]

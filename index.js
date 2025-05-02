@@ -13,7 +13,7 @@ app.use(require("morgan")("tiny"));
 // cors integration
 const cors = require("cors");
 
-const allowedOrigins = ["http://localhost:5173", "https://fwc-india.org" , "https://firstworldcommunity.org","https://www.firstworldcommunity.org"];
+const allowedOrigins = ["http://localhost:5173", "https://fwc-india.org", "https://firstworldcommunity.org", "https://www.firstworldcommunity.org"];
 
 app.use(
   cors({
@@ -76,6 +76,7 @@ app.use("/masterClass", require("./src/routes/masterClass.routes.js"));
 app.use("/yuvaShakti", require("./src/routes/yuvaShakti.routes.js"));
 app.use("/spotlightBoost", require("./src/routes/spotlightBoost.routes.js"));
 app.use("/zoomPremium", require("./src/routes/zoomPremium.routes.js"));
+app.use("/matchMaking", require("./src/routes/matchMaking.routes.js"));
 
 
 // Error handling
