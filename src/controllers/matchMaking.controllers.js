@@ -8,106 +8,8 @@ const investorsData = require("../../InvestorsData.json")
 
 
 const UserSchema = require("../models/user.schema.js");
-const MatchMakingSchema = require("../models/MatchMaking.schema.js");
 const { getChatCompletion } = require("../utils/openai.js");
-
-
-
-exports.create_match_making = catchAsyncErrors(async (req, res, next) => {
-    try {
-        const {
-            fullName,
-            phoneNumber,
-            email,
-            whatsAppNumber,
-            location,
-            linkedinProfile,
-            professionalBackground,
-            companyName,
-            companyWebsite,
-            industrySectors,
-            businessType,
-            businessDescription,
-            problemSolving,
-            targetMarket,
-            revenueModel,
-            businessStage,
-            fundingRequirement,
-            futureVision,
-            currentChallenges,
-            keyAchievements,
-            teamMembers,
-            lookingFor,
-            investmentType,
-            expertiseRequired,
-            contactMethod,
-            otherInfo
-        } = req.body;
-
-        const requiredFields = [
-            'fullName', 'phoneNumber', 'email', 'location', 'companyName', 'companyWebsite',
-            'industrySectors', 'businessType', 'businessDescription', 'problemSolving', 'targetMarket',
-            'revenueModel', 'businessStage', 'fundingRequirement', 'futureVision', 'currentChallenges',
-            'keyAchievements', 'teamMembers', 'lookingFor', 'investmentType', 'contactMethod'
-        ];
-
-        const missingFields = requiredFields.filter(field => !req.body[field]);
-
-        if (missingFields.length > 0) {
-            return res.status(400).json({ message: `The following fields are required: ${missingFields.join(', ')}` });
-        }
-
-
-        const newMatchMaking = await MatchMakingSchema.create({
-
-            fullName,
-            phoneNumber,
-            email,
-            whatsAppNumber,
-            location,
-            linkedinProfile,
-            professionalBackground,
-            companyName,
-            companyWebsite,
-            industrySectors,
-            businessType,
-            businessDescription,
-            problemSolving,
-            targetMarket,
-            revenueModel,
-            businessStage,
-            fundingRequirement,
-            futureVision,
-            currentChallenges,
-            keyAchievements,
-            teamMembers,
-            lookingFor,
-            investmentType,
-            expertiseRequired,
-            contactMethod,
-            otherInfo
-        });
-
-        res.status(201).json({
-            success: true,
-            data: newMatchMaking
-        });
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-});
-
-exports.all_matchmaking = catchAsyncErrors(async (req, res, next) => {
-    try {
-        const matchmakings = await MatchMakingSchema.find({});
-        res.status(200).json({
-            success: true,
-            data: matchmakings
-        });
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-})
+const MemberSchema = require("../models/member.schema.js");
 
 
 exports.allow_matchmaking = catchAsyncErrors(async (req, res, next) => {
@@ -115,94 +17,125 @@ exports.allow_matchmaking = catchAsyncErrors(async (req, res, next) => {
         const { id } = req.params;
 
         // Fetch matchmaking data by ID
-        const matchMaking = await MatchMakingSchema.findById(id);
-        if (!matchMaking) {
-            return next(new ErrorHandler("Matchmaking not found", 404));
+        const member = await MemberSchema.findById(id);
+        if (!member) {
+            return next(new ErrorHandler("member not found", 404));
         }
 
-        // Extract matchmaking details
-        const {
-            industrySectors,
-            businessType,
-            companyName,
-            companyWebsite,
-            businessDescription,
-            targetMarket,
-            fundingRequirement,
-            problemSolving
-        } = matchMaking;
+        const usefulFields = {
+            fullName: member.fullName,
+            contact: member.contact,
+            email: member.email,
+            city: member.city,
+            country: member.country,
+            linkedinProfile: member.linkedinProfile,
+            instagram: member.instagram,
+            companyName: member.companyName,
+            userType: member.userType,
+            sector: member.sector,
+            businessType: member.businessType,
+            stage: member.stage,
+            turnover: member.turnover,
+            Website: member.Website,
+            requirements: member.requirements,
+            lookingForCollaboration: member.lookingForCollaboration,
+            needFWCConnection: member.needFWCConnection,
+            platform: member.platform,
+            needTechSupport: member.needTechSupport,
+            helpInBranding: member.helpInBranding,
+            goals: member.goals,
+            problem: member.problem,
+            shortDescription: member.shortDescription,
+            expandInternationally: member.expandInternationally,
+            investmentSupport: member.investmentSupport,
+            investmentAmount: member.investmentAmount,
+            investmentPurpose: member.investmentPurpose,
+            membershipCategory: member.membershipCategory,
+        };
 
-        // Create the prompt for OpenAI
+        const allMembers = await MemberSchema.find({ _id: { $ne: id } });
+
         const prompt = `
-        You are an AI startup-investor matchmaking assistant.
+You are an expert AI assistant for business matchmaking.
 
-        A startup has the following details:
-        - Company Name: ${companyName}
-        - Company Website: ${companyWebsite}
-        - Business Description: ${businessDescription}
-        - Target Market: ${targetMarket}
-        - Funding Requirement: ${fundingRequirement}
-        - Problem Solving: ${problemSolving}
-        - Industry Sectors: ${Array.isArray(industrySectors) ? industrySectors.join(', ') : 'N/A'}
-        - Business Type: ${Array.isArray(businessType) ? businessType.join(', ') : 'N/A'}
+You are given one member with the following details:
 
-        Full list of available investors and mentors:
+${JSON.stringify(usefulFields, null, 2)}
 
-        ${JSON.stringify(investorsData, null, 2)}
+Now, from the list of other available members below, find the best possible matches who:
+- Can help grow this business,
+- Provide mentorship or guidance,
+- Collaborate on technology, automation, branding, or expansion,
+- Or are aligned in business sector, type, or goals.
 
-        ### TASK:
-        Analyze carefully and select the TOP 1 best-matching Investors/Mentors/Instructors based on the startup's requirements.
+If no suitable matches are found, return an empty JSON array: []
 
-        ### VERY IMPORTANT:
-        Return the final output as CLEAN JSON ARRAY with 5 objects.  
-        Each object must have exactly these fields:
+Otherwise, return a clean JSON array of matched members in the exact format below:
 
-        {
-            "name": "",
-            "phoneNumber": "",
-            "email": "",
-            "whatsAppNumber": "",
-            "location": "",
-            "industrySectors": [""],
-            "businessType": [""],
-            "howYouKnowUs": ""
-        }
+[
+  {
+    "name": "Full Name",
+    "contact": "+91xxxxxxxxxx",
+    "email": "example@email.com",
+    "city": "Ahmedabad",
+    "country": "India",
+    "companyName": "MetroTech Fab",
+    "website": "https://www.metrotechfab.com",
+    "howTheyCanHelp": "Can help with automation, distribution in Asia, or branding support."
+  }
+]
 
-        DO NOT add any extra text like "Here are the top 5 matches" — ONLY return the pure JSON array, no explanation, no markdown.
+Do NOT include any extra explanation or text — only return the raw JSON array.
 
-        Start directly with [ and end with ].
-        `;
+Here is the list of all other available members:
 
-        // Get chat completion from OpenAI
+${JSON.stringify(allMembers.map((m) => ({
+            fullName: m.fullName,
+            contact: m.contact,
+            email: m.email,
+            city: m.city,
+            country: m.country,
+            companyName: m.companyName,
+            Website: m.Website,
+            userType: m.userType,
+            sector: m.sector,
+            businessType: m.businessType,
+            stage: m.stage,
+            turnover: m.turnover,
+            shortDescription: m.shortDescription,
+            requirements: m.requirements,
+            goals: m.goals,
+            problem: m.problem,
+            investmentSupport: m.investmentSupport,
+            investmentAmount: m.investmentAmount,
+            investmentPurpose: m.investmentPurpose,
+        }), null, 2))}
+`;
+
+
         const aiResponse = await getChatCompletion(prompt);
 
-        let investorsResponse;
-
+        let matchedConnections;
         try {
-            investorsResponse = JSON.parse(aiResponse); // Safe parsing
+            matchedConnections = JSON.parse(aiResponse);
         } catch (parseError) {
             return res.status(500).json({
                 success: false,
-                message: 'Failed to parse AI response. Try again.',
+                message: 'Failed to parse AI response.',
                 error: parseError.message
             });
         }
 
         res.status(200).json({
             success: true,
-            message: 'Matchmaking allowed successfully',
-            data: {
-                matchMaking,
-                topInvestors: investorsResponse
-            }
+            message: matchedConnections.length === 0 ? 'No matchmaking found' : 'Matchmaking successful',
+            data: matchedConnections
         });
+
 
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 });
-
-
-
 
 
