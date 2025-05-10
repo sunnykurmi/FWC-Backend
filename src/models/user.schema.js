@@ -12,7 +12,7 @@ let userSchema = new mongoose.Schema(
       minlength: 2,
       lowercase: true,
     },
-    investmentCircle:{
+    investmentCircle: {
       type: String,
       default: "empty",
     },
@@ -28,6 +28,10 @@ let userSchema = new mongoose.Schema(
       trim: true,
       minlength: 6,
       select: false,
+    },
+    expert_connect: {
+      type: Boolean,
+      default: false,
     },
     role: {
       type: String,

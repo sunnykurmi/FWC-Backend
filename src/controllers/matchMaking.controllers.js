@@ -4,12 +4,64 @@ const { sendtoken } = require("../utils/sendtoken.js");
 const mongoose = require("mongoose");
 let path = require("path");
 let { initImageKit } = require("../utils/imagekit.js");
+const nodemailer = require("nodemailer");
 const investorsData = require("../../InvestorsData.json")
 
 
 const UserSchema = require("../models/user.schema.js");
 const { getChatCompletion } = require("../utils/openai.js");
 const MemberSchema = require("../models/member.schema.js");
+const ExpertConnectSchema = require("../models/expertConnect.schema.js");
+
+exports.getAllMatchmakings = catchAsyncErrors(async (req, res, next) => {
+    try {
+        const allMatchmakings = await ExpertConnectSchema.find().populate("memberId")
+        if (!allMatchmakings) {
+            return next(new ErrorHandler("No matchmaking found", 404));
+        }
+        res.status(200).json({
+            success: true,
+            message: "Matchmaking fetched successfully",
+            data: allMatchmakings,
+        });
+
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: error.message });
+    }
+})
+
+exports.create_matchmaking = catchAsyncErrors(async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        console.log(id);
+        // const user = await UserSchema.findById(id);
+        // user.expert_connect = false;
+        // await user.save();
+        const member = await MemberSchema.findOne({ userId: id });
+        if (!member) {
+            return next(new ErrorHandler("member not found", 404));
+        }
+        const newConnection = await ExpertConnectSchema.create({
+            memberId: member._id,
+        });
+
+        res.status(200).json({
+            success: true,
+            message: "Matchmaking request created successfully",
+            data: newConnection,
+        });
+
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+);
+
+
+
+
 
 
 exports.allow_matchmaking = catchAsyncErrors(async (req, res, next) => {
@@ -17,42 +69,10 @@ exports.allow_matchmaking = catchAsyncErrors(async (req, res, next) => {
         const { id } = req.params;
 
         // Fetch matchmaking data by ID
-        const member = await MemberSchema.findById(id);
+        const member = await MemberSchema.findOne({ _id: id });
         if (!member) {
             return next(new ErrorHandler("member not found", 404));
         }
-
-        const usefulFields = {
-            fullName: member.fullName,
-            contact: member.contact,
-            email: member.email,
-            city: member.city,
-            country: member.country,
-            linkedinProfile: member.linkedinProfile,
-            instagram: member.instagram,
-            companyName: member.companyName,
-            userType: member.userType,
-            sector: member.sector,
-            businessType: member.businessType,
-            stage: member.stage,
-            turnover: member.turnover,
-            Website: member.Website,
-            requirements: member.requirements,
-            lookingForCollaboration: member.lookingForCollaboration,
-            needFWCConnection: member.needFWCConnection,
-            platform: member.platform,
-            needTechSupport: member.needTechSupport,
-            helpInBranding: member.helpInBranding,
-            goals: member.goals,
-            problem: member.problem,
-            shortDescription: member.shortDescription,
-            expandInternationally: member.expandInternationally,
-            investmentSupport: member.investmentSupport,
-            investmentAmount: member.investmentAmount,
-            investmentPurpose: member.investmentPurpose,
-            membershipCategory: member.membershipCategory,
-        };
-
         const allMembers = await MemberSchema.find({ _id: { $ne: id } });
 
         const prompt = `
@@ -60,7 +80,7 @@ You are an expert AI assistant for business matchmaking.
 
 You are given one member with the following details:
 
-${JSON.stringify(usefulFields, null, 2)}
+${JSON.stringify(member, null, 2)}
 
 Now, from the list of other available members below, find the best possible matches who:
 - Can help grow this business,
@@ -117,7 +137,8 @@ ${JSON.stringify(allMembers.map((m) => ({
 
         let matchedConnections;
         try {
-            matchedConnections = JSON.parse(aiResponse);
+            const cleanedResponse = aiResponse.trim().replace(/^```(?:json)?\n/, '').replace(/```$/, '');
+            matchedConnections = JSON.parse(cleanedResponse);
         } catch (parseError) {
             return res.status(500).json({
                 success: false,
@@ -126,12 +147,87 @@ ${JSON.stringify(allMembers.map((m) => ({
             });
         }
 
+        const transport = nodemailer.createTransport({
+            service: "gmail",
+            host: "smtp.gmail.com",
+            post: 465,
+            auth: {
+                user: process.env.MAIL_EMAIL_ADDRESS,
+                pass: process.env.MAIL_PASSWORD,
+            },
+        });
+
+        const mailOptions = {
+            from: "First World Community",
+            to: member.email,
+            subject: "Your Matchmaking are succefully generated",
+            html: `
+<div style="font-family: Arial, sans-serif; color: #333; padding: 20px;">
+  <h2 style="color: #2c3e50;">🤝 Your Business Matchmaking Results</h2>
+  <p>
+    Dear <b>${member.fullName}</b>,
+    <br /><br />
+    We’re excited to share your personalized business matches as part of your FWC Membership journey.
+    <br />Below are your top recommended connections based on your profile:
+  </p>
+
+  ${matchedConnections.length === 0
+                    ? `<p style="color: red;"><b>No matches found</b>. Our team will keep monitoring for suitable opportunities.</p>`
+                    : `
+    <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+      <thead>
+        <tr style="background-color: #f0f0f0;">
+          <th style="border: 1px solid #ccc; padding: 8px;">Name</th>
+          <th style="border: 1px solid #ccc; padding: 8px;">Contact</th>
+          <th style="border: 1px solid #ccc; padding: 8px;">Email</th>
+          <th style="border: 1px solid #ccc; padding: 8px;">City</th>
+          <th style="border: 1px solid #ccc; padding: 8px;">Company</th>
+          <th style="border: 1px solid #ccc; padding: 8px;">Website</th>
+          <th style="border: 1px solid #ccc; padding: 8px;">How They Can Help</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${matchedConnections.map(match => `
+          <tr>
+            <td style="border: 1px solid #ccc; padding: 8px;">${match.name}</td>
+            <td style="border: 1px solid #ccc; padding: 8px;">${match.contact}</td>
+            <td style="border: 1px solid #ccc; padding: 8px;">${match.email}</td>
+            <td style="border: 1px solid #ccc; padding: 8px;">${match.city}, ${match.country}</td>
+            <td style="border: 1px solid #ccc; padding: 8px;">${match.companyName}</td>
+            <td style="border: 1px solid #ccc; padding: 8px;"><a href="${match.website}" target="_blank">${match.website}</a></td>
+            <td style="border: 1px solid #ccc; padding: 8px;">${match.howTheyCanHelp}</td>
+          </tr>
+        `).join('')}
+      </tbody>
+    </table>
+  `}
+
+  <br /><br />
+  <p>
+    Thank you for being a valuable member of the <b>First World Community</b>. We hope these connections help you achieve greater success in your journey.
+    <br /><br />
+    Best regards,<br/>
+    <b>FWC Membership Team</b><br/>
+    📩 <a href="mailto:info@fwc-india.org">info@fwc-india.org</a><br/>
+    🌐 <a href="https://firstworldcommunity.org">firstworldcommunity.org</a>
+  </p>
+</div>
+`
+
+        };
+
+        transport.sendMail(mailOptions, (err, info) => {
+            if (err) return next(new ErrorHandler(err, 500));
+            res
+                .status(200)
+                .json({ message: "matchmaking successful", status: matchmaking.status });
+        });
+
         res.status(200).json({
             success: true,
             message: matchedConnections.length === 0 ? 'No matchmaking found' : 'Matchmaking successful',
             data: matchedConnections
         });
-
 
     } catch (error) {
         res.status(500).json({ message: error.message });
