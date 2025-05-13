@@ -12,7 +12,7 @@ const userSchema = require("../models/user.schema.js");
 const atithiRequestsSchema = require("../models/atithiRequests.schema.js");
 
 exports.all_members = catchAsyncErrors(async (req, res, next) => {
-  let members = await MemberSchema.find();
+  let members = await MemberSchema.find().populate("userId");
   if (!members) return next(new ErrorHandler("Members not found", 404));
   res.json({ success: true, members });
 });

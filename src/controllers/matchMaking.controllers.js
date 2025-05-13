@@ -15,8 +15,14 @@ const ExpertConnectSchema = require("../models/expertConnect.schema.js");
 
 exports.getAllMatchmakings = catchAsyncErrors(async (req, res, next) => {
     try {
-        const allMatchmakings = await ExpertConnectSchema.find().populate("memberId")
-        if (!allMatchmakings) {
+ const allMatchmakings = await ExpertConnectSchema.find()
+      .populate({
+        path: "memberId",
+        populate: {
+          path: "userId", 
+        },
+      });
+              if (!allMatchmakings) {
             return next(new ErrorHandler("No matchmaking found", 404));
         }
         res.status(200).json({
@@ -35,10 +41,11 @@ exports.getAllMatchmakings = catchAsyncErrors(async (req, res, next) => {
 exports.create_matchmaking = catchAsyncErrors(async (req, res, next) => {
     try {
         const { id } = req.params;
-        console.log(id);
-        // const user = await UserSchema.findById(id);
-        // user.expert_connect = false;
-        // await user.save();
+      
+        const user = await UserSchema.findById(id);
+        user.expert_connect = "pending";
+        await user.save();
+        
         const member = await MemberSchema.findOne({ userId: id });
         if (!member) {
             return next(new ErrorHandler("member not found", 404));
@@ -70,6 +77,13 @@ exports.allow_matchmaking = catchAsyncErrors(async (req, res, next) => {
 
         // Fetch matchmaking data by ID
         const member = await MemberSchema.findOne({ _id: id });
+        const userId = member.userId;
+        const user = await UserSchema.findById(userId);
+        if (!user) {
+            return next(new ErrorHandler("User not found", 404));
+        }
+        user.expert_connect = "completed";
+        await user.save();
         if (!member) {
             return next(new ErrorHandler("member not found", 404));
         }

@@ -30,8 +30,8 @@ let userSchema = new mongoose.Schema(
       select: false,
     },
     expert_connect: {
-      type: Boolean,
-      default: false,
+      type: String,
+      default: "notapplied",
     },
     role: {
       type: String,
