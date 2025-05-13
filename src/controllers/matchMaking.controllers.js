@@ -14,55 +14,55 @@ const MemberSchema = require("../models/member.schema.js");
 const ExpertConnectSchema = require("../models/expertConnect.schema.js");
 
 exports.getAllMatchmakings = catchAsyncErrors(async (req, res, next) => {
-    try {
- const allMatchmakings = await ExpertConnectSchema.find()
+  try {
+    const allMatchmakings = await ExpertConnectSchema.find()
       .populate({
         path: "memberId",
         populate: {
-          path: "userId", 
+          path: "userId",
         },
       });
-              if (!allMatchmakings) {
-            return next(new ErrorHandler("No matchmaking found", 404));
-        }
-        res.status(200).json({
-            success: true,
-            message: "Matchmaking fetched successfully",
-            data: allMatchmakings,
-        });
-
-
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({ message: error.message });
+    if (!allMatchmakings) {
+      return next(new ErrorHandler("No matchmaking found", 404));
     }
+    res.status(200).json({
+      success: true,
+      message: "Matchmaking fetched successfully",
+      data: allMatchmakings,
+    });
+
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: error.message });
+  }
 })
 
 exports.create_matchmaking = catchAsyncErrors(async (req, res, next) => {
-    try {
-        const { id } = req.params;
-      
-        const user = await UserSchema.findById(id);
-        user.expert_connect = "pending";
-        await user.save();
-        
-        const member = await MemberSchema.findOne({ userId: id });
-        if (!member) {
-            return next(new ErrorHandler("member not found", 404));
-        }
-        const newConnection = await ExpertConnectSchema.create({
-            memberId: member._id,
-        });
+  try {
+    const { id } = req.params;
 
-        res.status(200).json({
-            success: true,
-            message: "Matchmaking request created successfully",
-            data: newConnection,
-        });
+    const user = await UserSchema.findById(id);
+    user.expert_connect = "pending";
+    await user.save();
 
-    } catch (error) {
-        res.status(500).json({ message: error.message });
+    const member = await MemberSchema.findOne({ userId: id });
+    if (!member) {
+      return next(new ErrorHandler("member not found", 404));
     }
+    const newConnection = await ExpertConnectSchema.create({
+      memberId: member._id,
+    });
+
+    res.status(200).json({
+      success: true,
+      message: "Matchmaking request created successfully",
+      data: newConnection,
+    });
+
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 }
 );
 
@@ -72,24 +72,24 @@ exports.create_matchmaking = catchAsyncErrors(async (req, res, next) => {
 
 
 exports.allow_matchmaking = catchAsyncErrors(async (req, res, next) => {
-    try {
-        const { id } = req.params;
+  try {
+    const { id } = req.params;
 
-        // Fetch matchmaking data by ID
-        const member = await MemberSchema.findOne({ _id: id });
-        const userId = member.userId;
-        const user = await UserSchema.findById(userId);
-        if (!user) {
-            return next(new ErrorHandler("User not found", 404));
-        }
-        user.expert_connect = "completed";
-        await user.save();
-        if (!member) {
-            return next(new ErrorHandler("member not found", 404));
-        }
-        const allMembers = await MemberSchema.find({ _id: { $ne: id } });
+    // Fetch matchmaking data by ID
+    const member = await MemberSchema.findOne({ _id: id });
+    const userId = member.userId;
+    const user = await UserSchema.findById(userId);
+    if (!user) {
+      return next(new ErrorHandler("User not found", 404));
+    }
+    user.expert_connect = "completed";
+    await user.save();
+    if (!member) {
+      return next(new ErrorHandler("member not found", 404));
+    }
+    const allMembers = await MemberSchema.find({ _id: { $ne: id } });
 
-        const prompt = `
+    const prompt = `
 You are an expert AI assistant for business matchmaking.
 
 You are given one member with the following details:
@@ -124,58 +124,63 @@ Do NOT include any extra explanation or text — only return the raw JSON array.
 Here is the list of all other available members:
 
 ${JSON.stringify(allMembers.map((m) => ({
-            fullName: m.fullName,
-            contact: m.contact,
-            email: m.email,
-            city: m.city,
-            country: m.country,
-            companyName: m.companyName,
-            Website: m.Website,
-            userType: m.userType,
-            sector: m.sector,
-            businessType: m.businessType,
-            stage: m.stage,
-            turnover: m.turnover,
-            shortDescription: m.shortDescription,
-            requirements: m.requirements,
-            goals: m.goals,
-            problem: m.problem,
-            investmentSupport: m.investmentSupport,
-            investmentAmount: m.investmentAmount,
-            investmentPurpose: m.investmentPurpose,
-        }), null, 2))}
+      fullName: m.fullName,
+      contact: m.contact,
+      email: m.email,
+      city: m.city,
+      country: m.country,
+      companyName: m.companyName,
+      Website: m.Website,
+      userType: m.userType,
+      sector: m.sector,
+      businessType: m.businessType,
+      stage: m.stage,
+      turnover: m.turnover,
+      shortDescription: m.shortDescription,
+      requirements: m.requirements,
+      goals: m.goals,
+      problem: m.problem,
+      investmentSupport: m.investmentSupport,
+      investmentAmount: m.investmentAmount,
+      investmentPurpose: m.investmentPurpose,
+    }), null, 2))}
 `;
 
 
-        const aiResponse = await getChatCompletion(prompt);
 
-        let matchedConnections;
-        try {
-            const cleanedResponse = aiResponse.trim().replace(/^```(?:json)?\n/, '').replace(/```$/, '');
-            matchedConnections = JSON.parse(cleanedResponse);
-        } catch (parseError) {
-            return res.status(500).json({
-                success: false,
-                message: 'Failed to parse AI response.',
-                error: parseError.message
-            });
-        }
+    const aiResponse = await getChatCompletion(prompt);
 
-        const transport = nodemailer.createTransport({
-            service: "gmail",
-            host: "smtp.gmail.com",
-            post: 465,
-            auth: {
-                user: process.env.MAIL_EMAIL_ADDRESS,
-                pass: process.env.MAIL_PASSWORD,
-            },
-        });
+    console.log(aiResponse);
+    let matchedConnections = [];
+    try {
+      const cleanedResponse = aiResponse.trim().replace(/^```(?:json)?\n/, '').replace(/```$/, '');
+      matchedConnections = JSON.parse(cleanedResponse);
+      if (!Array.isArray(matchedConnections)) throw new Error('Expected an array');
+    } catch (parseError) {
+      return res.status(500).json({
+        success: false,
+        message: 'Failed to parse AI response.',
+        error: parseError.message,
+        rawResponse: aiResponse
+      });
+    }
 
-        const mailOptions = {
-            from: "First World Community",
-            to: member.email,
-            subject: "Your Matchmaking are succefully generated",
-            html: `
+
+    const transport = nodemailer.createTransport({
+      service: "gmail",
+      host: "smtp.gmail.com",
+      post: 465,
+      auth: {
+        user: process.env.MAIL_EMAIL_ADDRESS,
+        pass: process.env.MAIL_PASSWORD,
+      },
+    });
+
+    const mailOptions = {
+      from: "First World Community",
+      to: member.email,
+      subject: "Your Matchmaking are succefully generated",
+      html: `
 <div style="font-family: Arial, sans-serif; color: #333; padding: 20px;">
   <h2 style="color: #2c3e50;">🤝 Your Business Matchmaking Results</h2>
   <p>
@@ -186,8 +191,8 @@ ${JSON.stringify(allMembers.map((m) => ({
   </p>
 
   ${matchedConnections.length === 0
-                    ? `<p style="color: red;"><b>No matches found</b>. Our team will keep monitoring for suitable opportunities.</p>`
-                    : `
+          ? `<p style="color: red;"><b>No matches found</b>. Our team will keep monitoring for suitable opportunities.</p>`
+          : `
     <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
       <thead>
         <tr style="background-color: #f0f0f0;">
@@ -228,24 +233,24 @@ ${JSON.stringify(allMembers.map((m) => ({
 </div>
 `
 
-        };
+    };
 
-        transport.sendMail(mailOptions, (err, info) => {
-            if (err) return next(new ErrorHandler(err, 500));
-            res
-                .status(200)
-                .json({ message: "matchmaking successful", status: matchmaking.status });
-        });
+    transport.sendMail(mailOptions, (err, info) => {
+      if (err) return next(new ErrorHandler(err, 500));
+      res
+        .status(200)
+        .json({ message: "matchmaking successful", status: matchmaking.status });
+    });
 
-        res.status(200).json({
-            success: true,
-            message: matchedConnections.length === 0 ? 'No matchmaking found' : 'Matchmaking successful',
-            data: matchedConnections
-        });
+    res.status(200).json({
+      success: true,
+      message: matchedConnections.length === 0 ? 'No matchmaking found' : 'Matchmaking successful',
+      data: matchedConnections
+    });
 
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 });
 
 
